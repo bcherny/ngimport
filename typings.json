@@ -1,0 +1,7 @@
+{
+  "ambientDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20160328125810",
+    "angular-animate": "registry:dt/angular-animate#1.5.0+20160407085121",
+    "jquery": "registry:dt/jquery#1.10.0+20160316155526"
+  }
+}

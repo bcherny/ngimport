@@ -1,0 +1,90 @@
+import * as angular from 'angular'
+import * as animate from 'angular-animate'
+
+export let $animate: angular.animate.IAnimateService = undefined
+export let $animateCss: angular.animate.IAnimateCssService = undefined
+export let $anchorScroll: angular.IAnchorScrollService = undefined
+export let $aria: any = undefined
+export let $cacheFactory: angular.ICacheFactoryService = undefined
+export let $compile: angular.ICompileService = undefined
+export let $controller: angular.IControllerService = undefined
+export let $cookies: any = undefined
+export let $document: angular.IDocumentService = undefined
+export let $exceptionHandler: angular.IExceptionHandlerService = undefined
+export let $filter: angular.IFilterService = undefined
+export let $http: angular.IHttpService = undefined
+export let $httpBackend: angular.IHttpBackendService = undefined
+export let $httpParamSerializer: angular.IHttpParamSerializer = undefined
+export let $httpParamSerializerJQLike: any = undefined
+export let $injector: angular.auto.IInjectorService = undefined
+export let $interpolate: angular.IInterpolateService = undefined
+export let $interval: angular.IIntervalService = undefined
+export let $locale: angular.ILocaleService = undefined
+export let $location: angular.ILocationService = undefined
+export let $log: angular.ILogService = undefined
+export let $parse: angular.IParseService = undefined
+export let $provide: angular.auto.IProvideService = undefined
+export let $q: angular.IQService = undefined
+export let $resource: any = undefined
+export let $rootElement: angular.IRootElementService = undefined
+export let $rootRouter: any = undefined
+export let $rootScope: angular.IRootScopeService = undefined
+export let $route: any = undefined
+export let $routeParams: any = undefined
+export let $routerRootComponent: any = undefined
+export let $sanitize: any = undefined
+export let $sce: angular.ISCEService = undefined
+export let $sceDelegate: angular.ISCEDelegateService = undefined
+export let $swipe: any = undefined
+export let $templateCache: angular.ITemplateCacheService = undefined
+export let $templateRequest: angular.ITemplateRequestService = undefined
+export let $timeout: angular.ITimeoutService = undefined
+export let $touch: any = undefined
+export let $window: angular.IWindowService = undefined
+export let $xhrFactory: any = undefined
+
+// TODO: add mgMock/ngMockE2E services
+
+angular.module('bcherny/ngimport', []).run(function($injector: angular.auto.IInjectorService) {
+  $animate = <angular.animate.IAnimateService>$injector.get('$animate')
+  $animateCss = <angular.animate.IAnimateCssService>$injector.get('$animateCss')
+  $anchorScroll = <angular.IAnchorScrollService>$injector.get('$anchorScroll')
+  $aria = <any>$injector.get('$aria')
+  $cacheFactory = <angular.ICacheFactoryService>$injector.get('$cacheFactory')
+  $compile = <angular.ICompileService>$injector.get('$compile')
+  $controller = <angular.IControllerService>$injector.get('$controller')
+  $cookies = <any>$injector.get('$cookies')
+  $document = <angular.IDocumentService>$injector.get('$document')
+  $exceptionHandler = <angular.IExceptionHandlerService>$injector.get('$exceptionHandler')
+  $filter = <angular.IFilterService>$injector.get('$filter')
+  $http = <angular.IHttpService>$injector.get('$http')
+  $httpBackend = <angular.IHttpBackendService>$injector.get('$httpBackend')
+  $httpParamSerializer = <angular.IHttpParamSerializer>$injector.get('$httpParamSerializer')
+  $httpParamSerializerJQLike = <any>$injector.get('$httpParamSerializerJQLike')
+  $injector = <angular.auto.IInjectorService>$injector
+  $interpolate = <angular.IInterpolateService>$injector.get('$interpolate')
+  $interval = <angular.IIntervalService>$injector.get('$interval')
+  $locale = <angular.ILocaleService>$injector.get('$locale')
+  $location = <angular.ILocationService>$injector.get('$location')
+  $log = <angular.ILogService>$injector.get('$log')
+  $parse = <angular.IParseService>$injector.get('$parse')
+  $provide = <angular.auto.IProvideService>$injector.get('$provide')
+  $q = <angular.IQService>$injector.get('$q')
+  $resource = <any>$injector.get('$resource')
+  $rootElement = <angular.IRootElementService>$injector.get('$rootElement')
+  $rootRouter = <any>$injector.get('$rootRouter')
+  $rootScope = <angular.IRootScopeService>$injector.get('$rootScope')
+  $route = <any>$injector.get('$route')
+  $routeParams = <any>$injector.get('$routeParams')
+  $routerRootComponent = <any>$injector.get('$routerRootComponent')
+  $sanitize = <any>$injector.get('$sanitize')
+  $sce = <angular.ISCEService>$injector.get('$sce')
+  $sceDelegate = <angular.ISCEDelegateService>$injector.get('$sceDelegate')
+  $swipe = <any>$injector.get('$swipe')
+  $templateCache = <angular.ITemplateCacheService>$injector.get('$templateCache')
+  $templateRequest = <angular.ITemplateRequestService>$injector.get('$templateRequest')
+  $timeout = <angular.ITimeoutService>$injector.get('$timeout')
+  $touch = <any>$injector.get('$touch')
+  $window = <angular.IWindowService>$injector.get('$window')
+  $xhrFactory = <any>$injector.get('$xhrFactory')
+})

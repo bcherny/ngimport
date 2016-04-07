@@ -1,0 +1,32 @@
+{
+  "name": "ngimport",
+  "version": "0.0.1",
+  "description": "Finally, imports for Angular 1 builtins!",
+  "main": "./ngimport.js",
+  "main:esnext": "./ngimport.es6.js",
+  "typings": "./ngimport.d.ts",
+  "scripts": {
+    "build": "tsc -d -m es2015 --outDir .; mv ./ngimport.js ./ngimport.es6.js; tsc -m commonjs --outDir .;",
+    "watch": "tsc -w",
+    "test": "ava",
+    "tdd": "npm test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bcherny/ngimport.git"
+  },
+  "keywords": [
+    "import",
+    "angular",
+    "require",
+    "dependency",
+    "inject",
+    "di"
+  ],
+  "author": "Boris Cherny <boris@performancejs.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bcherny/ngimport/issues"
+  },
+  "homepage": "https://github.com/bcherny/ngimport#readme"
+}
