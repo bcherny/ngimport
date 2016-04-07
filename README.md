@@ -2,6 +2,8 @@
 
 > Finally, imports for Angular 1 builtins!
 
+**docs and tests coming soon...**
+
 ## Example
 
 With ngimport:
