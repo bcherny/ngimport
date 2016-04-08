@@ -73,11 +73,11 @@ angular.component('MyComponent', {
 
 ## Why?
 
-// TODO
+TODO
 
 ## Limitations of this approach
 
-// TODO
+TODO
 
 ## License
 
@@ -85,4 +85,8 @@ MIT
 
 ## Running the tests
 
-// TODO
+TODO
+
+## Todo
+
+- Add support for $aria, $cookies, $provide, $resource, $rootRouter, $route, $routeParams, $routerRootComponent, $sanitize, $swipe, $touch
