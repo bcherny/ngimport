@@ -1,8 +1,5 @@
 import * as angular from 'angular'
-import * as animate from 'angular-animate'
 
-export let $animate: angular.animate.IAnimateService = undefined
-export let $animateCss: angular.animate.IAnimateCssService = undefined
 export let $anchorScroll: angular.IAnchorScrollService = undefined
 export let $cacheFactory: angular.ICacheFactoryService = undefined
 export let $compile: angular.ICompileService = undefined
@@ -35,8 +32,6 @@ export let $xhrFactory: any = undefined
 // TODO: add mgMock/ngMockE2E services
 
 angular.module('bcherny/ngimport', []).run(function($injector: angular.auto.IInjectorService) {
-  $animate = <angular.animate.IAnimateService>$injector.get('$animate')
-  $animateCss = <angular.animate.IAnimateCssService>$injector.get('$animateCss')
   $anchorScroll = <angular.IAnchorScrollService>$injector.get('$anchorScroll')
   $cacheFactory = <angular.ICacheFactoryService>$injector.get('$cacheFactory')
   $compile = <angular.ICompileService>$injector.get('$compile')

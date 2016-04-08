@@ -1,6 +1,4 @@
 import * as angular from 'angular';
-export declare let $animate: angular.animate.IAnimateService;
-export declare let $animateCss: angular.animate.IAnimateCssService;
 export declare let $anchorScroll: angular.IAnchorScrollService;
 export declare let $cacheFactory: angular.ICacheFactoryService;
 export declare let $compile: angular.ICompileService;

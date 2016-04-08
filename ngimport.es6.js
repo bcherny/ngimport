@@ -1,6 +1,4 @@
 import * as angular from 'angular';
-export let $animate = undefined;
-export let $animateCss = undefined;
 export let $anchorScroll = undefined;
 export let $cacheFactory = undefined;
 export let $compile = undefined;
@@ -31,8 +29,6 @@ export let $window = undefined;
 export let $xhrFactory = undefined;
 // TODO: add mgMock/ngMockE2E services
 angular.module('bcherny/ngimport', []).run(function ($injector) {
-    $animate = $injector.get('$animate');
-    $animateCss = $injector.get('$animateCss');
     $anchorScroll = $injector.get('$anchorScroll');
     $cacheFactory = $injector.get('$cacheFactory');
     $compile = $injector.get('$compile');

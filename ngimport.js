@@ -1,7 +1,5 @@
 "use strict";
 const angular = require('angular');
-exports.$animate = undefined;
-exports.$animateCss = undefined;
 exports.$anchorScroll = undefined;
 exports.$cacheFactory = undefined;
 exports.$compile = undefined;
@@ -32,8 +30,6 @@ exports.$window = undefined;
 exports.$xhrFactory = undefined;
 // TODO: add mgMock/ngMockE2E services
 angular.module('bcherny/ngimport', []).run(function ($injector) {
-    exports.$animate = $injector.get('$animate');
-    exports.$animateCss = $injector.get('$animateCss');
     exports.$anchorScroll = $injector.get('$anchorScroll');
     exports.$cacheFactory = $injector.get('$cacheFactory');
     exports.$compile = $injector.get('$compile');
