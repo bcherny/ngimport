@@ -1,16 +1,33 @@
 # ngimport [![Circle CI](https://circleci.com/gh/bcherny/ngimport/tree/master.svg?style=svg)](https://circleci.com/gh/bcherny/ngimport/tree/master)
 
-> Finally, imports for Angular 1 builtins!
+> A saner alternative to Angular 1 dependency injection
 
 **docs and tests coming soon...**
 
 ## Example
 
-With ngimport:
+### Before:
 
 ```ts
-// Contents of Get.ts:
+import {IHttpService, ILogService, IPromise} from 'angular'
 
+angular.factory('Get', function($http: IHttpService, $log: ILogService) {
+  return function (url: string): IPromise<string> {
+    return $http.get(url).then(data => {
+      $log.info('Got data!', data)
+      return data
+    })
+  }
+})
+
+export interface Get {
+  (url: string): IPromise<string>
+}
+```
+
+### After:
+
+```tssou
 import {IPromise} from 'angular'
 import {$http, $log} from 'ngimport'
 
@@ -20,21 +37,11 @@ export function Get (url: string): IPromise<string> {
     return data
   })
 }
-
-// Contents of MyComponent.ts:
-
-import {Get} from './Get'
-
-angular.component('MyComponent', {
-  controller: class MyComponentController {
-    get() {
-      Get('/foo').then(data => ...)
-    }
-  }
-})
 ```
 
-Without ngimport:
+## Full Example
+
+### Without ngimport:
 
 ```ts
 // Contents of Get.ts:
@@ -71,23 +78,55 @@ angular.component('MyComponent', {
 })
 ```
 
+### With ngimport:
+
+```ts
+// Contents of Get.ts:
+
+import {IPromise} from 'angular'
+import {$http, $log} from 'ngimport'
+
+export function Get (url: string): IPromise<string> {
+  return $http.get(url).then(data => {
+    $log.info('Got data!', data)
+    return data
+  })
+}
+
+// Contents of MyComponent.ts:
+
+import {Get} from './Get'
+
+angular.component('MyComponent', {
+  controller: class MyComponentController {
+    get() {
+      Get('/foo').then(data => ...)
+    }
+  }
+})
+```
+
 ## Why?
 
-TODO
+Angular 1 DI made sense when there was no JavaScript module standard. But with the advent of CommonJS, and now ES Modules, Angular DI only serves to make your code less portable.
 
-## Upsides of this approach
+If you add TypeScript to the mix, you'll often find yourself repeating class interface definitions; you might create a typed service class, but because its dependencies are injected via a closure, you can't export the class directly, and instead need to create a second interface and export that! And if you use the class' constructor to inject dependencies, you then can't pass arguments to a new instance of your constructor!
+
+With the *ngimport* approach, all of these issues are solved. But the biggest benefit is your code becomes much more **portable**: you can mix and match Angular 1, Angular 2, or even React components with zero friction. And if you're using TypeScript, you can do all this in a 100% typesafe way, for free.
+
+### Upsides of this approach
 
 - No more ugly, proprietary DI! Use standard imports
 - No lock in: easy migration path to Angular2, React, etc.
-- Use constructors like they should be used
-- Avoid duplicate interface declarations
-- Mock Angular dependencies with `$provide` in your unit tests as usual
-- Assert against HTTP requests with `$httpBackend` in your unit tests as usual
+- Use constructors to pass in arguments, rather than for DI
+- Avoid duplicated TypeScript interface declarations
+- Mock Angular dependencies with `$provide` in your unit tests, as usual
+- Assert against HTTP requests with `$httpBackend` in your unit tests, as usual
 - Use it as an adapter to migrate your codebase to imports piece by piece
 
-## Limitations of this approach
+### Limitations of this approach
 
-- All imported references must be executed by Angular *after* they are resolved in their respective exports. So for example, the following will not work:
+- All imported references must be executed by Angular *after* they are resolved in their respective exports. So for example, the following will not work - you need to call your injectable after Angular has finished initializing all of its providers:
 
    ```ts
    # bad
@@ -99,13 +138,17 @@ TODO
    export function get() { return $http.get('/url') }
    ```
 
-### Specifically when using just the builtin imports included in this library
+#### Specifically when using just the builtin imports included in this library
 
 TODO
 
-### Specifically when using this technique to wrap your own legacy modules
+#### Specifically when using this technique to wrap your own legacy modules
 
 - If transpiling to CommonJS, be careful to destructure the import rather than importing a default value. Otherwise when the exported reference updates, your consumer will still have a pointer to the old, undefined reference!
+
+## Backporting existing code
+
+TODO
 
 TODO
 
