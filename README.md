@@ -131,11 +131,11 @@ But the biggest benefit is your code becomes much more **portable**: you can mix
 - All imported references must be executed by Angular *after* they are resolved in their respective exports. So for example, the following will not work - you need to call your injectable after Angular has finished initializing all of its providers:
 
    ```ts
-   # bad
+   // bad
    import {$http} from 'ngimport'
    $http.get('/url') // FAIL! $http is not yet resolved
    
-   # good
+   // good
    import {$http} from 'ngimport'
    export function get() { return $http.get('/url') }
    ```
