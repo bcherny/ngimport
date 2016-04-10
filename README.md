@@ -27,7 +27,7 @@ export interface Get {
 
 ### After:
 
-```tssou
+```ts
 import {IPromise} from 'angular'
 import {$http, $log} from 'ngimport'
 
@@ -41,7 +41,7 @@ export function Get (url: string): IPromise<string> {
 
 ## Full Example
 
-### Without ngimport:
+### Before:
 
 ```ts
 // Contents of Get.ts:
@@ -78,7 +78,7 @@ angular.component('MyComponent', {
 })
 ```
 
-### With ngimport:
+### After:
 
 ```ts
 // Contents of Get.ts:
