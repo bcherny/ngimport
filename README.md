@@ -110,9 +110,11 @@ angular.component('MyComponent', {
 
 Angular 1 DI made sense when there was no JavaScript module standard. But with the advent of CommonJS, and now ES Modules, Angular DI only serves to make your code less portable.
 
-If you add TypeScript to the mix, you'll often find yourself repeating class interface definitions; you might create a typed service class, but because its dependencies are injected via a closure, you can't export the class directly, and instead need to create a second interface and export that! And if you use the class' constructor to inject dependencies, you then can't pass arguments to a new instance of your constructor!
+If you add TypeScript to the mix, you'll often find yourself repeating class interface definitions; you might create a typed service class, but because its dependencies are injected via a closure, you can't export the class directly, and instead need to create a second interface and export it instead! And if you use the class' constructor to inject dependencies, then you can't pass arguments to a new instance of your constructor!
 
-With the *ngimport* approach, all of these issues are solved. But the biggest benefit is your code becomes much more **portable**: you can mix and match Angular 1, Angular 2, or even React components with zero friction. And if you're using TypeScript, you can do all this in a 100% typesafe way, for free.
+With the *ngimport* approach, all of these issues are solved.
+
+But the biggest benefit is your code becomes much more **portable**: you can mix and match Angular 1, Angular 2, or even React components with zero friction. And if you're using TypeScript, you can do all of this in a 100% typesafe way.
 
 ### Upsides of this approach
 
