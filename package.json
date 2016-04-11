@@ -1,6 +1,6 @@
 {
   "name": "ngimport",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Finally, imports for Angular 1 builtins!",
   "main": "./ngimport.js",
   "main:esnext": "./ngimport.es6.js",
@@ -9,8 +9,7 @@
     "build": "tsc -d -m es2015 --outDir .; mv ./ngimport.js ./ngimport.es6.js; tsc -m commonjs --outDir .;",
     "watch": "tsc -w",
     "test": "ava",
-    "tdd": "npm test -- --watch",
-    "postinstall": "typings install"
+    "tdd": "npm test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -30,7 +29,7 @@
     "url": "https://github.com/bcherny/ngimport/issues"
   },
   "homepage": "https://github.com/bcherny/ngimport#readme",
-  "dependencies": {
+  "devDependencies": {
     "typings": "^0.7.12"
   }
 }
