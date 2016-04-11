@@ -126,9 +126,44 @@ But the biggest benefit is your code becomes much more **portable**: you can mix
 - Assert against HTTP requests with `$httpBackend` in your unit tests, as usual
 - Use it as an adapter to migrate your codebase to imports piece by piece
 
-### Limitations when using this technique to wrap your own legacy modules
+## Using this technique to wrap your own legacy modules
 
-- If transpiling to CommonJS, be careful to destructure the import rather than importing a default value. Otherwise when the exported reference updates, your consumer will still have a pointer to the old, undefined reference!
+You can easily use the same technique that *ngimport* uses to expose your own, legacy Angular 1 modules via ES7 `import`s. Let's say you have the following code:
+
+```js
+// Contents of myModule.js:
+
+angular
+  .module('myModule', [])
+  .service('fooService', function($http) {
+    this.foo = function() {
+      return $http.get('/url')
+    }
+  })
+```
+
+To consume `fooService` today, you need to DI it; instead, let's expose it and its typings so we can `import` it:
+
+```ts
+// Contents of fooService.ts:
+
+import {IPromise, module} from 'angular'
+export let fooService = undefined
+
+interface FooService {
+  foo: () => IPromise<{ data: string }>
+}
+
+module('myModule').run(function ($injector) {
+  fooService = <FooService>$injector.get('fooService')
+})
+```
+
+Voila! Now instead of DIing `fooService`, we can now simply write `import {fooService} from './fooService'`. We then have the freedom to migrate `fooService` to TypeScript/ES6 at our own pace.
+
+### Limitations
+
+- If transpiling to CommonJS, be careful to destructure the import rather than importing a default value. Otherwise when the exported reference updates, your consumer will still have a pointer to the old, undefined reference.
 
 ## Backporting existing code
 
