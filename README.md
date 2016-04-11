@@ -126,25 +126,7 @@ But the biggest benefit is your code becomes much more **portable**: you can mix
 - Assert against HTTP requests with `$httpBackend` in your unit tests, as usual
 - Use it as an adapter to migrate your codebase to imports piece by piece
 
-### Limitations of this approach
-
-- All imported references must be executed by Angular *after* they are resolved in their respective exports. So for example, the following will not work - you need to call your injectable after Angular has finished initializing all of its providers:
-
-   ```ts
-   // bad
-   import {$http} from 'ngimport'
-   $http.get('/url') // FAIL! $http is not yet resolved
-   
-   // good
-   import {$http} from 'ngimport'
-   export function get() { return $http.get('/url') }
-   ```
-
-#### Specifically when using just the builtin imports included in this library
-
-TODO
-
-#### Specifically when using this technique to wrap your own legacy modules
+### Limitations when using this technique to wrap your own legacy modules
 
 - If transpiling to CommonJS, be careful to destructure the import rather than importing a default value. Otherwise when the exported reference updates, your consumer will still have a pointer to the old, undefined reference!
 

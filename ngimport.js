@@ -28,34 +28,47 @@ exports.$templateRequest = undefined;
 exports.$timeout = undefined;
 exports.$window = undefined;
 exports.$xhrFactory = undefined;
+// bootstrap a dummy application using our module, so the #run block
+// below is synchronously called, and all of the injectables in it are
+// guaranteed to be defined after this code is run.
+// TODO: move this out into a separate module
+// TODO: tests
+function bootstrap(moduleName) {
+    const div = document.createElement('div');
+    document.body.appendChild(div);
+    angular.bootstrap(div, [moduleName]);
+    document.body.removeChild(div);
+}
+exports.bootstrap = bootstrap;
 // TODO: add mgMock/ngMockE2E services
-angular.module('bcherny/ngimport', []).run(function ($injector) {
-    exports.$anchorScroll = $injector.get('$anchorScroll');
-    exports.$cacheFactory = $injector.get('$cacheFactory');
-    exports.$compile = $injector.get('$compile');
-    exports.$controller = $injector.get('$controller');
-    exports.$document = $injector.get('$document');
-    exports.$exceptionHandler = $injector.get('$exceptionHandler');
-    exports.$filter = $injector.get('$filter');
-    exports.$http = $injector.get('$http');
-    exports.$httpBackend = $injector.get('$httpBackend');
-    exports.$httpParamSerializer = $injector.get('$httpParamSerializer');
-    exports.$httpParamSerializerJQLike = $injector.get('$httpParamSerializerJQLike');
-    $injector = $injector;
-    exports.$interpolate = $injector.get('$interpolate');
-    exports.$interval = $injector.get('$interval');
-    exports.$locale = $injector.get('$locale');
-    exports.$location = $injector.get('$location');
-    exports.$log = $injector.get('$log');
-    exports.$parse = $injector.get('$parse');
-    exports.$q = $injector.get('$q');
-    exports.$rootElement = $injector.get('$rootElement');
-    exports.$rootScope = $injector.get('$rootScope');
-    exports.$sce = $injector.get('$sce');
-    exports.$sceDelegate = $injector.get('$sceDelegate');
-    exports.$templateCache = $injector.get('$templateCache');
-    exports.$templateRequest = $injector.get('$templateRequest');
-    exports.$timeout = $injector.get('$timeout');
-    exports.$window = $injector.get('$window');
-    exports.$xhrFactory = $injector.get('$xhrFactory');
-});
+angular.module('bcherny/ngimport', []).run(['$injector', function ($i) {
+        exports.$anchorScroll = $i.get('$anchorScroll');
+        exports.$cacheFactory = $i.get('$cacheFactory');
+        exports.$compile = $i.get('$compile');
+        exports.$controller = $i.get('$controller');
+        exports.$document = $i.get('$document');
+        exports.$exceptionHandler = $i.get('$exceptionHandler');
+        exports.$filter = $i.get('$filter');
+        exports.$http = $i.get('$http');
+        exports.$httpBackend = $i.get('$httpBackend');
+        exports.$httpParamSerializer = $i.get('$httpParamSerializer');
+        exports.$httpParamSerializerJQLike = $i.get('$httpParamSerializerJQLike');
+        exports.$injector = $i;
+        exports.$interpolate = $i.get('$interpolate');
+        exports.$interval = $i.get('$interval');
+        exports.$locale = $i.get('$locale');
+        exports.$location = $i.get('$location');
+        exports.$log = $i.get('$log');
+        exports.$parse = $i.get('$parse');
+        exports.$q = $i.get('$q');
+        exports.$rootElement = $i.get('$rootElement');
+        exports.$rootScope = $i.get('$rootScope');
+        exports.$sce = $i.get('$sce');
+        exports.$sceDelegate = $i.get('$sceDelegate');
+        exports.$templateCache = $i.get('$templateCache');
+        exports.$templateRequest = $i.get('$templateRequest');
+        exports.$timeout = $i.get('$timeout');
+        exports.$window = $i.get('$window');
+        exports.$xhrFactory = $i.get('$xhrFactory');
+    }]);
+bootstrap('bcherny/ngimport');

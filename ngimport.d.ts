@@ -27,3 +27,4 @@ export declare let $templateRequest: angular.ITemplateRequestService;
 export declare let $timeout: angular.ITimeoutService;
 export declare let $window: angular.IWindowService;
 export declare let $xhrFactory: any;
+export declare function bootstrap(moduleName: string): void;
