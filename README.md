@@ -1,8 +1,14 @@
 # ngimport [![Circle CI](https://circleci.com/gh/bcherny/ngimport/tree/master.svg?style=svg)](https://circleci.com/gh/bcherny/ngimport/tree/master)
 
+[![Build Status][build]](https://circleci.com/gh/bcherny/ngimport) [![npm]](https://www.npmjs.com/package/ngimport) [![mit]](https://opensource.org/licenses/MIT)
+
+[build]: https://img.shields.io/circleci/project/bcherny/ngimport.svg?branch=master&style=flat-square
+[npm]: https://img.shields.io/npm/v/ngimport.svg?style=flat-square
+[mit]: https://img.shields.io/npm/l/ngimport.svg?style=flat-square
+
 > A saner alternative to Angular 1 dependency injection
 
-**docs and tests coming soon...**
+**alpha**
 
 ## Example
 
@@ -108,9 +114,9 @@ angular.component('MyComponent', {
 
 ## Why?
 
-Angular 1 DI made sense when there was no JavaScript module standard. But with the advent of CommonJS, and now ES Modules, Angular DI only serves to make your code less portable.
+Angular 1 DI made sense when there was no JavaScript module standard. But with the advent of CommonJS, and now ES Modules, Angular DI only makes your code less portable.
 
-If you add TypeScript to the mix, you'll often find yourself repeating class interface definitions; you might create a typed service class, but because its dependencies are injected via a closure, you can't export the class directly, and instead need to create a second interface and export it instead! And if you use the class' constructor to inject dependencies, then you can't pass arguments to a new instance of your constructor!
+If you add TypeScript to the mix, you'll often find yourself repeating class interface definitions: you might create a typed service class, but because its dependencies are injected via a closure, you can't export the class directly, and instead need to create a second interface and export it instead! And if you use the class' constructor to inject dependencies, then you can't pass arguments to a new instance of your constructor!
 
 With the *ngimport* approach, all of these issues are solved.
 
@@ -128,7 +134,7 @@ But the biggest benefit is your code becomes much more **portable**: you can mix
 
 ## Using this technique to wrap your own legacy modules
 
-You can easily use the same technique that *ngimport* uses to expose your own, legacy Angular 1 modules via ES7 `import`s. Let's say you have the following code:
+You can easily use the same technique that *ngimport* uses to expose your own, legacy Angular 1 modules via ES6 `import`s. Let's say you have the following code:
 
 ```js
 // Contents of myModule.js:
@@ -165,19 +171,13 @@ Voila! Now instead of DIing `fooService`, we can now simply write `import {fooSe
 
 - If transpiling to CommonJS, be careful to destructure the import rather than importing a default value. Otherwise when the exported reference updates, your consumer will still have a pointer to the old, undefined reference.
 
-## Backporting existing code
-
-TODO
-
-TODO
-
 ## License
 
 MIT
 
 ## Running the tests
 
-TODO
+`npm test`
 
 ## Todo
 
