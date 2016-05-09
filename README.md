@@ -1,6 +1,4 @@
-# ngimport [![Circle CI](https://circleci.com/gh/bcherny/ngimport/tree/master.svg?style=svg)](https://circleci.com/gh/bcherny/ngimport/tree/master)
-
-[![Build Status][build]](https://circleci.com/gh/bcherny/ngimport) [![npm]](https://www.npmjs.com/package/ngimport) [![mit]](https://opensource.org/licenses/MIT)
+# ngimport [![Build Status][build]](https://circleci.com/gh/bcherny/ngimport) [![npm]](https://www.npmjs.com/package/ngimport) [![mit]](https://opensource.org/licenses/MIT)
 
 [build]: https://img.shields.io/circleci/project/bcherny/ngimport.svg?branch=master&style=flat-square
 [npm]: https://img.shields.io/npm/v/ngimport.svg?style=flat-square
