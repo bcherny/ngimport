@@ -31,10 +31,19 @@
   "homepage": "https://github.com/bcherny/ngimport#readme",
   "devDependencies": {
     "angular-mocks": "^1.5.5",
+    "browserify": "^13.0.1",
     "jasmine": "^2.4.1",
+    "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
+    "karma-browserify": "^5.0.5",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-mocha-reporter": "^2.0.3",
     "karma-source-map-support": "^1.1.0",
     "rollupify": "^0.3.0",
     "typings": "^0.7.12"
+  },
+  "dependencies": {
+    "angular": "^1.5.5"
   }
 }
