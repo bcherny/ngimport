@@ -41,8 +41,17 @@ export function bootstrap(moduleName: string): void {
   document.body.removeChild(div)
 }
 
+// prevent double-loading, which has the potential
+// to prevent sharing state between services
+let m: angular.IModule = null
+try {
+  m = angular.module('bcherny/ngimport')
+} catch (e) {
+  m = angular.module('bcherny/ngimport', [])
+}
+
 // TODO: add mgMock/ngMockE2E services
-angular.module('bcherny/ngimport', []).run(['$injector', function($i: angular.auto.IInjectorService) {
+m.run(['$injector', function($i: angular.auto.IInjectorService) {
   $anchorScroll = <angular.IAnchorScrollService>$i.get('$anchorScroll')
   $cacheFactory = <angular.ICacheFactoryService>$i.get('$cacheFactory')
   $compile = <angular.ICompileService>$i.get('$compile')
@@ -72,5 +81,4 @@ angular.module('bcherny/ngimport', []).run(['$injector', function($i: angular.au
   $window = <angular.IWindowService>$i.get('$window')
   $xhrFactory = <any>$i.get('$xhrFactory')
 }])
-
 bootstrap('bcherny/ngimport')
