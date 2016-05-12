@@ -29,6 +29,38 @@ export let $timeout: angular.ITimeoutService = undefined
 export let $window: angular.IWindowService = undefined
 export let $xhrFactory: any = undefined
 
+export function lift(module: angular.IModule): angular.IModule {
+  return module
+    .constant('$anchorScroll', $anchorScroll)
+    .constant('$cacheFactory', $cacheFactory)
+    .constant('$compile', $compile)
+    .constant('$controller', $controller)
+    .constant('$document', $document)
+    .constant('$exceptionHandler', $exceptionHandler)
+    .constant('$filter', $filter)
+    .constant('$http', $http)
+    .constant('$httpBackend', $httpBackend)
+    .constant('$httpParamSerializer', $httpParamSerializer)
+    .constant('$httpParamSerializerJQLike', $httpParamSerializerJQLike)
+    .constant('$injector', $injector)
+    .constant('$interpolate', $interpolate)
+    .constant('$interval', $interval)
+    .constant('$locale', $locale)
+    .constant('$location', $location)
+    .constant('$log', $log)
+    .constant('$parse', $parse)
+    .constant('$q', $q)
+    .constant('$rootElement', $rootElement)
+    .constant('$rootScope', $rootScope)
+    .constant('$sce', $sce)
+    .constant('$sceDelegate', $sceDelegate)
+    .constant('$templateCache', $templateCache)
+    .constant('$templateRequest', $templateRequest)
+    .constant('$timeout', $timeout)
+    .constant('$window', $window)
+    .constant('$xhrFactory', $xhrFactory)
+}
+
 // bootstrap a dummy application using our module, so the #run block
 // below is synchronously called, and all of the injectables in it are
 // guaranteed to be defined after this code is run.

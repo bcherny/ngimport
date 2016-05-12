@@ -5,7 +5,6 @@ module.exports = function(config) {
     files: [
       './node_modules/angular/angular.js',
       './node_modules/angular-mocks/angular-mocks.js',
-      './ngimport.js',
       './test.js'
     ],
     preprocessors: {
@@ -25,6 +24,7 @@ module.exports = function(config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
-    concurrency: Infinity
+    concurrency: Infinity,
+    browserDisconnectTolerance: 30
   })
 }

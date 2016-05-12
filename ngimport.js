@@ -28,6 +28,38 @@ exports.$templateRequest = undefined;
 exports.$timeout = undefined;
 exports.$window = undefined;
 exports.$xhrFactory = undefined;
+function lift(module) {
+    return module
+        .constant('$anchorScroll', exports.$anchorScroll)
+        .constant('$cacheFactory', exports.$cacheFactory)
+        .constant('$compile', exports.$compile)
+        .constant('$controller', exports.$controller)
+        .constant('$document', exports.$document)
+        .constant('$exceptionHandler', exports.$exceptionHandler)
+        .constant('$filter', exports.$filter)
+        .constant('$http', exports.$http)
+        .constant('$httpBackend', exports.$httpBackend)
+        .constant('$httpParamSerializer', exports.$httpParamSerializer)
+        .constant('$httpParamSerializerJQLike', exports.$httpParamSerializerJQLike)
+        .constant('$injector', exports.$injector)
+        .constant('$interpolate', exports.$interpolate)
+        .constant('$interval', exports.$interval)
+        .constant('$locale', exports.$locale)
+        .constant('$location', exports.$location)
+        .constant('$log', exports.$log)
+        .constant('$parse', exports.$parse)
+        .constant('$q', exports.$q)
+        .constant('$rootElement', exports.$rootElement)
+        .constant('$rootScope', exports.$rootScope)
+        .constant('$sce', exports.$sce)
+        .constant('$sceDelegate', exports.$sceDelegate)
+        .constant('$templateCache', exports.$templateCache)
+        .constant('$templateRequest', exports.$templateRequest)
+        .constant('$timeout', exports.$timeout)
+        .constant('$window', exports.$window)
+        .constant('$xhrFactory', exports.$xhrFactory);
+}
+exports.lift = lift;
 // bootstrap a dummy application using our module, so the #run block
 // below is synchronously called, and all of the injectables in it are
 // guaranteed to be defined after this code is run.
