@@ -12,7 +12,7 @@ module.exports = function(config) {
     },
     browserify: {
       debug: true,
-      external: 'angular',
+      external: ['angular', 'angular-mocks'],
       extensions: ['.js'],
       transform: ['rollupify']
     },

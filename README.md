@@ -129,6 +129,11 @@ But the biggest benefit is your code becomes much more **portable**: you can mix
 - Mock Angular dependencies with `$provide` in your unit tests, as usual
 - Assert against HTTP requests with `$httpBackend` in your unit tests, as usual
 - Use it as an adapter to migrate your codebase to imports piece by piece
+- Use Angular services at the top level, without wrapping them in invokable closures
+
+#### But wait, what about mocking providers in tests? Isn't that the whole point of Angular's DI?
+
+TODO
 
 ## Using this technique to wrap your own legacy modules
 
@@ -168,6 +173,23 @@ Voila! Now instead of DIing `fooService`, we can now simply write `import {fooSe
 ### Limitations
 
 - If transpiling to CommonJS, be careful to destructure the import rather than importing a default value. Otherwise when the exported reference updates, your consumer will still have a pointer to the old, undefined reference.
+
+## Sharing state between ngimported services and your application
+
+You can use the provided `lift()` function if you need to take advantage of a stateful service, and are sometimes ngimporting it, sometimes injecting it with Angular DI.
+
+```ts
+// Contents of file1.js:
+import {$http} from 'ngimport'
+$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
+
+// Contents of file2.js:
+lift(angular.module('myModule', [])).run(function ($http) {
+  expect($http.defaults.headers.common.Authorization)
+    .toBe('Basic YmVlcDpib29w')
+})
+angular.bootstrap(someElement, ['myModule'])
+```
 
 ## License
 

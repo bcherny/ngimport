@@ -29,6 +29,7 @@ export let $timeout: angular.ITimeoutService = undefined
 export let $window: angular.IWindowService = undefined
 export let $xhrFactory: any = undefined
 
+// share a module's provider instances with ngimport
 export function lift(module: angular.IModule): angular.IModule {
   return module
     .constant('$anchorScroll', $anchorScroll)
