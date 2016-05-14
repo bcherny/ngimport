@@ -1,4 +1,5 @@
-import {$http, $rootScope, lift} from './ngimport.es6'
+import {mock} from 'angular'
+import {$http, $httpBackend, $rootScope, $templateCache, lift} from './ngimport.js'
 // import {$httpBackend} from 'ngimport-mocks'
 
 describe('ngimport', function() {
@@ -37,7 +38,7 @@ describe('ngimport', function() {
     angular.bootstrap(document.createElement('div'), ['a'])
   })
   it('should share ngimported provider instance state between injected instances and ngimported instances, when using angular DI and ngimport #lift', function() {
-    lift(angular.module('a', []))
+    lift(angular.module('a', ['bcherny/ngimport']))
       .run(function ($http) {
         $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
       })
@@ -56,9 +57,16 @@ describe('ngimport', function() {
     expect($http.defaults.headers.common.Authorization).not.toBeDefined()
   })
   it('should be able to mock dependencies with $provide', function() {
-    // TODO
+    angular.module('a', [])
+    mock.module('a', function ($provide) {
+      $provide.value('$http', 42)
+    })
+    inject(function ($http) {
+      expect($http).toBe(42)
+    })
+
   })
-  it('should be able to assert against HTTP requests with $httpBackend', function() {
+  it('should be able to assert against HTTP requests with $httpBackend', function () {
     // $httpBackend.expectGET('/url').respond(null)
     // $http.get('/url')
     // $httpBackend.flush()

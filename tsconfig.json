@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "preserveConstEnums": true,
@@ -10,6 +10,7 @@
   },
   "files": [
     "./typings/main.d.ts",
+    "./typings.d.ts",
     "./ngimport.ts"
   ]
 }
