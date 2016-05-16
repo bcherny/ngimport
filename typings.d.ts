@@ -11,7 +11,7 @@ declare namespace angular {
       get(a: '$http'): angular.IHttpService
       get(a: '$httpBackend'): angular.IHttpBackendService
       get(a: '$httpParamSerializer'): angular.IHttpParamSerializer
-      get(a: '$httpParamSerializerJQLike'): any
+      get(a: '$httpParamSerializerJQLike'): angular.IHttpParamSerializer
       get(a: '$interpolate'): angular.IInterpolateService
       get(a: '$interval'): angular.IIntervalService
       get(a: '$locale'): angular.ILocaleService
@@ -27,7 +27,7 @@ declare namespace angular {
       get(a: '$templateRequest'): angular.ITemplateRequestService
       get(a: '$timeout'): angular.ITimeoutService
       get(a: '$window'): angular.IWindowService
-      get(a: '$xhrFactory'): any
+      get<T>(a: '$xhrFactory'): angular.IXhrFactory<T>
     }
   }
 }

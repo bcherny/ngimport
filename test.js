@@ -1,76 +1,54 @@
-import {mock} from 'angular'
-import {$http, $httpBackend, $rootScope, $templateCache, lift} from './ngimport.js'
-// import {$httpBackend} from 'ngimport-mocks'
+import {$http, $rootScope, bootstrap} from './ngimport.js'
 
 describe('ngimport', function() {
   afterEach(function() {
     $http.defaults.headers.common = {}
   })
-  it('should define angular builtins immediately, before the app is bootstrapped', function() {
+  it('should define angular builtins immediately, before the app is bootstrapped', function () {
+    angular.module('a', [])
+    bootstrap(angular.element(), ['a'])
     expect($http).toBeDefined()
     expect($http.name).toBe('$http')
     expect($rootScope.constructor.name).toBe('Scope')
   })
   it('should not override ngimported provider state', function() {
-    $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
-    angular
-      .module('a', [])
-      .run(function () {
-        expect($http.defaults.headers.common.Authorization).toBe('Basic YmVlcDpib29w')
-      })
-    angular.bootstrap(document.createElement('div'), ['a'])
-  })
-  it('should share ngimported provider instance state between ngimported instances and injected instances, when using angular DI and ngimport #lift', function() {
-    $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
-    lift(angular.module('a', []))
-      .run(function ($http) {
-        expect($http.defaults.headers.common.Authorization).toBe('Basic YmVlcDpib29w')
-      })
-    angular.bootstrap(document.createElement('div'), ['a'])
-  })
-  it('should not share ngimported provider instance state between ngimported instances and injected instances, when using angular DI by itself', function() {
-    $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
-    angular
-      .module('a', [])
-      .run(function ($http) {
-        expect($http.defaults.headers.common.Authorization).not.toBeDefined()
-      })
-    angular.bootstrap(document.createElement('div'), ['a'])
-  })
-  it('should share ngimported provider instance state between injected instances and ngimported instances, when using angular DI and ngimport #lift', function() {
-    lift(angular.module('a', ['bcherny/ngimport']))
-      .run(function ($http) {
-        $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
-      })
-    expect($http.defaults.headers.common.Authorization).not.toBeDefined()
-    angular.bootstrap(document.createElement('div'), ['a'])
-    expect($http.defaults.headers.common.Authorization).toBe('Basic YmVlcDpib29w')
-  })
-  it('should not share ngimported provider instance state between injected instances and ngimported instances, when using angular DI and not using ngimport #lift', function() {
-    angular
-      .module('a', [])
-      .run(function ($http) {
-        $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
-      })
-    expect($http.defaults.headers.common.Authorization).not.toBeDefined()
-    angular.bootstrap(document.createElement('div'), ['a'])
-    expect($http.defaults.headers.common.Authorization).not.toBeDefined()
-  })
-  it('should be able to mock dependencies with $provide', function() {
     angular.module('a', [])
-    mock.module('a', function ($provide) {
-      $provide.value('$http', 42)
+    bootstrap(angular.element(), ['a'])
+    $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
+    angular.module('a').run(function () {
+      expect($http.defaults.headers.common.Authorization).toBe('Basic YmVlcDpib29w')
     })
-    inject(function ($http) {
-      expect($http).toBe(42)
-    })
-
+    angular.bootstrap(document.createElement('div'), ['a'])
   })
-  it('should be able to assert against HTTP requests with $httpBackend', function () {
-    // $httpBackend.expectGET('/url').respond(null)
-    // $http.get('/url')
-    // $httpBackend.flush()
-    // $httpBackend.verifyNoOutstandingExpectation()
-    // $httpBackend.verifyNoOutstandingRequest()
+  it('should share ngimported service state between ngimported and injected instances', function() {
+    angular.module('a', [])
+    const $injector = bootstrap(document.createElement('div'), ['a'])
+    $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
+    expect($injector.get('$http').defaults.headers.common.Authorization)
+      .toBe('Basic YmVlcDpib29w')
   })
+  it('should share ngimported service state between injected and ngimported instances', function() {
+    angular.module('a', [])
+    const $injector = bootstrap(document.createElement('div'), ['a'])
+    $injector.get('$http').defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
+    expect($http.defaults.headers.common.Authorization)
+      .toBe('Basic YmVlcDpib29w')
+  })
+  // it('should be able to mock dependencies with $provide', function () {
+  //   angular.module('a', [])
+  //   const $injector = angular.bootstrap(document.createElement('div'), ['a'])
+  //   angular.module('a')
+  //     .constant('$http', 42)
+  //   expect($injector.get('$http')).toBe(42)
+  //   expect($http).toBe(42)
+  // })
+  // it('should be able to assert against HTTP requests with $httpBackend', inject(function ($httpBackend) {
+  //   angular.module('a', [])
+  //   const $injector = bootstrap(document.createElement('div'), ['a'])
+  //   $httpBackend.expectGET('/url').respond(null)
+  //   $http.get('/url')
+  //   $httpBackend.flush()
+  //   $httpBackend.verifyNoOutstandingExpectation()
+  //   $httpBackend.verifyNoOutstandingRequest()
+  // }))
 })

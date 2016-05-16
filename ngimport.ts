@@ -1,74 +1,69 @@
-// prevent double-loading, which has the potential
-// to prevent sharing state between services
-let m: angular.IModule = null
-try {
-  m = angular.module('bcherny/ngimport')
-} catch (e) {
-  m = angular.module('bcherny/ngimport', [])
-    .value('$rootElement', angular.element())
-}
-
-const $i = angular.injector(['ng', 'bcherny/ngimport'])
+export let $anchorScroll: angular.IAnchorScrollService = undefined
+export let $cacheFactory: angular.ICacheFactoryService = undefined
+export let $compile: angular.ICompileService = undefined
+export let $controller: angular.IControllerService = undefined
+export let $document: angular.IDocumentService = undefined
+export let $exceptionHandler: angular.IExceptionHandlerService = undefined
+export let $filter: angular.IFilterService = undefined
+export let $http: angular.IHttpService = undefined
+export let $httpBackend: angular.IHttpBackendService = undefined
+export let $httpParamSerializer: angular.IHttpParamSerializer = undefined
+export let $httpParamSerializerJQLike: angular.IHttpParamSerializer = undefined
+export let $injector: angular.auto.IInjectorService = undefined
+export let $interpolate: angular.IInterpolateService = undefined
+export let $interval: angular.IIntervalService = undefined
+export let $locale: angular.ILocaleService = undefined
+export let $location: angular.ILocationService = undefined
+export let $log: angular.ILogService = undefined
+export let $parse: angular.IParseService = undefined
+export let $q: angular.IQService = undefined
+export let $rootElement: angular.IRootElementService = undefined
+export let $rootScope: angular.IRootScopeService = undefined
+export let $sce: angular.ISCEService = undefined
+export let $sceDelegate: angular.ISCEDelegateService = undefined
+export let $templateCache: angular.ITemplateCacheService = undefined
+export let $templateRequest: angular.ITemplateRequestService = undefined
+export let $timeout: angular.ITimeoutService = undefined
+export let $window: angular.IWindowService = undefined
+export let $xhrFactory: angular.IXhrFactory<any> = undefined
 
 // TODO: add mgMock/ngMockE2E services
-export const $anchorScroll = $i.get('$anchorScroll')
-export const $cacheFactory = $i.get('$cacheFactory')
-export const $compile = $i.get('$compile')
-export const $controller = $i.get('$controller')
-export const $document = $i.get('$document')
-export const $exceptionHandler = $i.get('$exceptionHandler')
-export const $filter = $i.get('$filter')
-export const $http = $i.get('$http')
-export const $httpBackend = $i.get('$httpBackend')
-export const $httpParamSerializer = $i.get('$httpParamSerializer')
-export const $httpParamSerializerJQLike: any = $i.get('$httpParamSerializerJQLike')
-export const $injector = $i
-export const $interpolate = $i.get('$interpolate')
-export const $interval = $i.get('$interval')
-export const $locale = $i.get('$locale')
-export const $location = $i.get('$location')
-export const $log = $i.get('$log')
-export const $parse = $i.get('$parse')
-export const $q = $i.get('$q')
-export const $rootElement = $i.get('$rootElement')
-export const $rootScope = $i.get('$rootScope')
-export const $sce = $i.get('$sce')
-export const $sceDelegate = $i.get('$sceDelegate')
-export const $templateCache = $i.get('$templateCache')
-export const $templateRequest = $i.get('$templateRequest')
-export const $timeout = $i.get('$timeout')
-export const $window = $i.get('$window')
-export const $xhrFactory = <any>$i.get('$xhrFactory')
+export function bootstrap(
+  element: string | Element | JQuery | Document,
+  modules?: (string | Function | any[])[],
+  config?: angular.IAngularBootstrapConfig
+): angular.auto.IInjectorService {
 
-// share a module's provider instances with ngimport
-export function lift(module: angular.IModule): angular.IModule {
-  return module
-    .constant('$anchorScroll', $anchorScroll)
-    .constant('$cacheFactory', $cacheFactory)
-    .constant('$compile', $compile)
-    .constant('$controller', $controller)
-    .constant('$document', $document)
-    .constant('$exceptionHandler', $exceptionHandler)
-    .constant('$filter', $filter)
-    .constant('$http', $http)
-    .constant('$httpBackend', $httpBackend)
-    .constant('$httpParamSerializer', $httpParamSerializer)
-    .constant('$httpParamSerializerJQLike', $httpParamSerializerJQLike)
-    .constant('$injector', $injector)
-    .constant('$interpolate', $interpolate)
-    .constant('$interval', $interval)
-    .constant('$locale', $locale)
-    .constant('$location', $location)
-    .constant('$log', $log)
-    .constant('$parse', $parse)
-    .constant('$q', $q)
-    .constant('$rootElement', $rootElement)
-    .constant('$rootScope', $rootScope)
-    .constant('$sce', $sce)
-    .constant('$sceDelegate', $sceDelegate)
-    .constant('$templateCache', $templateCache)
-    .constant('$templateRequest', $templateRequest)
-    .constant('$timeout', $timeout)
-    .constant('$window', $window)
-    .constant('$xhrFactory', $xhrFactory)
+  const $i = angular.bootstrap(element, modules, config)
+
+  $anchorScroll = $i.get('$anchorScroll')
+  $cacheFactory = $i.get('$cacheFactory')
+  $compile = $i.get('$compile')
+  $controller = $i.get('$controller')
+  $document = $i.get('$document')
+  $exceptionHandler = $i.get('$exceptionHandler')
+  $filter = $i.get('$filter')
+  $http = $i.get('$http')
+  $httpBackend = $i.get('$httpBackend')
+  $httpParamSerializer = $i.get('$httpParamSerializer')
+  $httpParamSerializerJQLike = $i.get('$httpParamSerializerJQLike')
+  $injector = $i
+  $interpolate = $i.get('$interpolate')
+  $interval = $i.get('$interval')
+  $locale = $i.get('$locale')
+  $location = $i.get('$location')
+  $log = $i.get('$log')
+  $parse = $i.get('$parse')
+  $q = $i.get('$q')
+  $rootElement = $i.get('$rootElement')
+  $rootScope = $i.get('$rootScope')
+  $sce = $i.get('$sce')
+  $sceDelegate = $i.get('$sceDelegate')
+  $templateCache = $i.get('$templateCache')
+  $templateRequest = $i.get('$templateRequest')
+  $timeout = $i.get('$timeout')
+  $window = $i.get('$window')
+  $xhrFactory = $i.get('$xhrFactory')
+
+  return $i
 }

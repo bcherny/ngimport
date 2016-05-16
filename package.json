@@ -1,12 +1,12 @@
 {
   "name": "ngimport",
-  "version": "0.0.7",
-  "description": "Finally, imports for Angular 1 builtins!",
+  "version": "0.1.0",
+  "description": "Finally, ES2015 imports for Angular 1 services!",
   "main": "./ngimport.js",
-  "main:esnext": "./ngimport.es6.js",
+  "main:esnext": "./ngimport.es2015.js",
   "typings": "./ngimport.d.ts",
   "scripts": {
-    "build": "tsc -d -m es2015 --outDir .; mv ./ngimport.js ./ngimport.es6.js; tsc -m commonjs --outDir .;",
+    "build": "tsc -d -m es2015 --outDir .; mv ./ngimport.js ./ngimport.es2015.js; tsc -m commonjs --outDir .;",
     "watch": "tsc -w",
     "test": "karma start --log-level debug --single-run",
     "tdd": "karma start"

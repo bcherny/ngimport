@@ -43,6 +43,37 @@ export function Get (url: string): IPromise<string> {
 }
 ```
 
+## Installation
+
+```sh
+npm install --save ngimport
+```
+
+In your main file, replace Angular's `bootstrap()` with ngimport's:
+
+### Before:
+
+```ts
+import {bootstrap, module} from 'angular'
+
+// declare module and bootstrap it
+module('myModule', [...])
+boostrap(myElement, ['myModule'])
+```
+
+### After:
+
+```ts
+import {module} from 'angular'
+import {bootstrap} from 'ngimport'
+
+// declare module and bootstrap it (exactly the same as before)
+module('myModule', [...])
+boostrap(myElement, ['myModule'])
+
+// imported services are now available!
+```
+
 ## Full Example
 
 ### Before:
@@ -176,19 +207,22 @@ Voila! Now instead of DIing `fooService`, we can now simply write `import {fooSe
 
 ## Sharing state between ngimported services and your application
 
-You can use the provided `lift()` function if you need to take advantage of a stateful service, and are sometimes ngimporting it, sometimes injecting it with Angular DI.
+If you are using a stateful service (like `$templateCache`), and are sometimes ngimporting it, sometimes injecting it with Angular DI, you can share its state for free:
 
 ```ts
 // Contents of file1.js:
 import {$http} from 'ngimport'
-$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
 
 // Contents of file2.js:
-lift(angular.module('myModule', [])).run(function ($http) {
-  expect($http.defaults.headers.common.Authorization)
-    .toBe('Basic YmVlcDpib29w')
-})
-angular.bootstrap(someElement, ['myModule'])
+angular.module('myModule', [])
+const $injector = angular.bootstrap(someElement, ['myModule'])
+
+// must be set *after* bootstrapping, since $http is not defined before:
+$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
+
+// ngimported $http shares its state with DI'd $http!:
+expect($injector.$http.defaults.headers.common.Authorization)
+  .toBe('Basic YmVlcDpib29w')
 ```
 
 ## License
