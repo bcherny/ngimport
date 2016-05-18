@@ -9,7 +9,7 @@
     "target": "es6"
   },
   "files": [
-    "./typings/main.d.ts",
+    "./typings/index.d.ts",
     "./ngimport.ts"
   ]
 }
