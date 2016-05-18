@@ -1,6 +1,6 @@
 {
   "name": "ngimport",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Finally, ES2015 imports for Angular 1 services!",
   "main": "./ngimport.js",
   "main:esnext": "./ngimport.es2015.js",
@@ -9,7 +9,8 @@
     "build": "tsc -d -m es2015 --outDir .; mv ./ngimport.js ./ngimport.es2015.js; tsc -m commonjs --outDir .;",
     "watch": "tsc -w",
     "test": "karma start --log-level debug --single-run",
-    "tdd": "karma start"
+    "tdd": "karma start",
+    "postinstall": "typings install"
   },
   "repository": {
     "type": "git",
@@ -40,10 +41,10 @@
     "karma-jasmine": "^1.0.2",
     "karma-mocha-reporter": "^2.0.3",
     "karma-source-map-support": "^1.1.0",
-    "rollupify": "^0.3.0",
-    "typings": "^1.0.4"
+    "rollupify": "^0.3.0"
   },
   "dependencies": {
-    "angular": "^1.5.5"
+    "angular": "^1.5.5",
+    "typings": "^1.0.4"
   }
 }
