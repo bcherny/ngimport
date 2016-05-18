@@ -1,6 +1,6 @@
 {
   "name": "ngimport",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Finally, ES2015 imports for Angular 1 services!",
   "main": "./ngimport.js",
   "main:esnext": "./ngimport.es2015.js",
@@ -41,7 +41,7 @@
     "karma-mocha-reporter": "^2.0.3",
     "karma-source-map-support": "^1.1.0",
     "rollupify": "^0.3.0",
-    "typings": "^0.7.12"
+    "typings": "^1.0.4"
   },
   "dependencies": {
     "angular": "^1.5.5"
