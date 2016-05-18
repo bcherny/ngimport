@@ -10,7 +10,6 @@
   },
   "files": [
     "./typings/main.d.ts",
-    "./typings.d.ts",
     "./ngimport.ts"
   ]
 }
