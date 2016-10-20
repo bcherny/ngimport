@@ -1,4 +1,5 @@
 "use strict";
+const angular = require('angular');
 exports.$anchorScroll = undefined;
 exports.$cacheFactory = undefined;
 exports.$compile = undefined;
@@ -27,37 +28,56 @@ exports.$templateRequest = undefined;
 exports.$timeout = undefined;
 exports.$window = undefined;
 exports.$xhrFactory = undefined;
-// TODO: add mgMock/ngMockE2E services
-function bootstrap(element, modules, config) {
-    const $i = angular.bootstrap(element, modules, config);
-    exports.$anchorScroll = $i.get('$anchorScroll');
-    exports.$cacheFactory = $i.get('$cacheFactory');
-    exports.$compile = $i.get('$compile');
-    exports.$controller = $i.get('$controller');
-    exports.$document = $i.get('$document');
-    exports.$exceptionHandler = $i.get('$exceptionHandler');
-    exports.$filter = $i.get('$filter');
-    exports.$http = $i.get('$http');
-    exports.$httpBackend = $i.get('$httpBackend');
-    exports.$httpParamSerializer = $i.get('$httpParamSerializer');
-    exports.$httpParamSerializerJQLike = $i.get('$httpParamSerializerJQLike');
-    exports.$injector = $i;
-    exports.$interpolate = $i.get('$interpolate');
-    exports.$interval = $i.get('$interval');
-    exports.$locale = $i.get('$locale');
-    exports.$location = $i.get('$location');
-    exports.$log = $i.get('$log');
-    exports.$parse = $i.get('$parse');
-    exports.$q = $i.get('$q');
-    exports.$rootElement = $i.get('$rootElement');
-    exports.$rootScope = $i.get('$rootScope');
-    exports.$sce = $i.get('$sce');
-    exports.$sceDelegate = $i.get('$sceDelegate');
-    exports.$templateCache = $i.get('$templateCache');
-    exports.$templateRequest = $i.get('$templateRequest');
-    exports.$timeout = $i.get('$timeout');
-    exports.$window = $i.get('$window');
-    exports.$xhrFactory = $i.get('$xhrFactory');
-    return $i;
+// bootstrap a dummy application using our module, so the #run block
+// below is synchronously called, and all of the injectables in it are
+// guaranteed to be defined after this code is run.
+// TODO: move this out into a separate module
+// TODO: tests
+function bootstrap(moduleName) {
+    const div = document.createElement('div');
+    document.body.appendChild(div);
+    angular.bootstrap(div, [moduleName]);
+    document.body.removeChild(div);
 }
 exports.bootstrap = bootstrap;
+// prevent double-loading, which has the potential
+// to prevent sharing state between services
+let m = null;
+try {
+    m = angular.module('bcherny/ngimport');
+}
+catch (e) {
+    m = angular.module('bcherny/ngimport', []);
+}
+// TODO: add mgMock/ngMockE2E services
+m.run(['$injector', function ($i) {
+        exports.$anchorScroll = $i.get('$anchorScroll');
+        exports.$cacheFactory = $i.get('$cacheFactory');
+        exports.$compile = $i.get('$compile');
+        exports.$controller = $i.get('$controller');
+        exports.$document = $i.get('$document');
+        exports.$exceptionHandler = $i.get('$exceptionHandler');
+        exports.$filter = $i.get('$filter');
+        exports.$http = $i.get('$http');
+        exports.$httpBackend = $i.get('$httpBackend');
+        exports.$httpParamSerializer = $i.get('$httpParamSerializer');
+        exports.$httpParamSerializerJQLike = $i.get('$httpParamSerializerJQLike');
+        exports.$injector = $i;
+        exports.$interpolate = $i.get('$interpolate');
+        exports.$interval = $i.get('$interval');
+        exports.$locale = $i.get('$locale');
+        exports.$location = $i.get('$location');
+        exports.$log = $i.get('$log');
+        exports.$parse = $i.get('$parse');
+        exports.$q = $i.get('$q');
+        exports.$rootElement = $i.get('$rootElement');
+        exports.$rootScope = $i.get('$rootScope');
+        exports.$sce = $i.get('$sce');
+        exports.$sceDelegate = $i.get('$sceDelegate');
+        exports.$templateCache = $i.get('$templateCache');
+        exports.$templateRequest = $i.get('$templateRequest');
+        exports.$timeout = $i.get('$timeout');
+        exports.$window = $i.get('$window');
+        exports.$xhrFactory = $i.get('$xhrFactory');
+    }]);
+bootstrap('bcherny/ngimport');

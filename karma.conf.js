@@ -5,6 +5,7 @@ module.exports = function(config) {
     files: [
       './node_modules/angular/angular.js',
       './node_modules/angular-mocks/angular-mocks.js',
+      './ngimport.js',
       './test.js'
     ],
     preprocessors: {
@@ -12,7 +13,7 @@ module.exports = function(config) {
     },
     browserify: {
       debug: true,
-      external: ['angular', 'angular-mocks'],
+      external: 'angular',
       extensions: ['.js'],
       transform: ['rollupify']
     },
@@ -24,7 +25,6 @@ module.exports = function(config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
-    concurrency: Infinity,
-    browserDisconnectTolerance: 30
+    concurrency: Infinity
   })
 }

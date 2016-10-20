@@ -43,37 +43,6 @@ export function Get (url: string): IPromise<string> {
 }
 ```
 
-## Installation
-
-```sh
-npm install --save ngimport
-```
-
-In your main file, replace Angular's `bootstrap()` with ngimport's:
-
-### Before:
-
-```ts
-import {bootstrap, module} from 'angular'
-
-// declare module and bootstrap it
-module('myModule', [...])
-boostrap(myElement, ['myModule'])
-```
-
-### After:
-
-```ts
-import {module} from 'angular'
-import {bootstrap} from 'ngimport'
-
-// declare module and bootstrap it (exactly the same as before)
-module('myModule', [...])
-boostrap(myElement, ['myModule'])
-
-// imported services are now available!
-```
-
 ## Full Example
 
 ### Before:
@@ -160,11 +129,6 @@ But the biggest benefit is your code becomes much more **portable**: you can mix
 - Mock Angular dependencies with `$provide` in your unit tests, as usual
 - Assert against HTTP requests with `$httpBackend` in your unit tests, as usual
 - Use it as an adapter to migrate your codebase to imports piece by piece
-- Use Angular services at the top level, without wrapping them in invokable closures
-
-#### But wait, what about mocking providers in tests? Isn't that the whole point of Angular's DI?
-
-TODO
 
 ## Using this technique to wrap your own legacy modules
 
@@ -204,26 +168,6 @@ Voila! Now instead of DIing `fooService`, we can now simply write `import {fooSe
 ### Limitations
 
 - If transpiling to CommonJS, be careful to destructure the import rather than importing a default value. Otherwise when the exported reference updates, your consumer will still have a pointer to the old, undefined reference.
-
-## Sharing state between ngimported services and your application
-
-If you are using a stateful service (like `$templateCache`), and are sometimes ngimporting it, sometimes injecting it with Angular DI, you can share its state for free:
-
-```ts
-// Contents of file1.js:
-import {$http} from 'ngimport'
-
-// Contents of file2.js:
-angular.module('myModule', [])
-const $injector = angular.bootstrap(someElement, ['myModule'])
-
-// must be set *after* bootstrapping, since $http is not defined before:
-$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
-
-// ngimported $http shares its state with DI'd $http!:
-expect($injector.$http.defaults.headers.common.Authorization)
-  .toBe('Basic YmVlcDpib29w')
-```
 
 ## License
 
