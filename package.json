@@ -1,14 +1,14 @@
 {
   "name": "ngimport",
-  "version": "0.0.7",
+  "version": "0.3.0",
   "description": "Finally, imports for Angular 1 builtins!",
   "main": "./ngimport.js",
-  "main:esnext": "./ngimport.es6.js",
+  "main:esnext": "./ngimport.es2015.js",
   "typings": "./ngimport.d.ts",
   "scripts": {
-    "build": "tsc -d -m es2015 --outDir .; mv ./ngimport.js ./ngimport.es6.js; tsc -m commonjs --outDir .;",
+    "build": "tsc -d -m es2015 -t es2015 --outDir . && mv ./ngimport.js ./ngimport.es2015.js && tsc -m commonjs -t es5 --outDir .;",
     "watch": "tsc -w",
-    "test": "karma start --log-level debug --single-run",
+    "test": "karma start --single-run",
     "tdd": "karma start"
   },
   "repository": {
@@ -30,20 +30,23 @@
   },
   "homepage": "https://github.com/bcherny/ngimport#readme",
   "devDependencies": {
-    "angular-mocks": "^1.5.5",
-    "browserify": "^13.0.1",
-    "jasmine": "^2.4.1",
-    "jasmine-core": "^2.4.1",
-    "karma": "^0.13.22",
-    "karma-browserify": "^5.0.5",
-    "karma-chrome-launcher": "^1.0.1",
+    "@types/angular-mocks": "^1.5.5",
+    "@types/jasmine": "^2.5.35",
+    "angular-mocks": "^1.5.8",
+    "browserify": "^13.1.0",
+    "jasmine": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-browserify": "^5.1.0",
+    "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.0.2",
-    "karma-mocha-reporter": "^2.0.3",
-    "karma-source-map-support": "^1.1.0",
-    "rollupify": "^0.3.0",
-    "typings": "^0.7.12"
+    "karma-mocha-reporter": "^2.2.0",
+    "karma-source-map-support": "^1.2.0",
+    "rollupify": "^0.3.4",
+    "typescript": "^2.0.3",
+    "watchify": "^3.7.0"
   },
   "dependencies": {
-    "angular": "^1.5.5"
+    "@types/angular": "^1.5.16",
+    "angular": "^1.5.8"
   }
 }

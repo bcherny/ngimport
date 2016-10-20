@@ -1,3 +1,5 @@
+/// <reference types="angular" />
+/// <reference types="angular-mocks" />
 import * as angular from 'angular';
 export declare let $anchorScroll: angular.IAnchorScrollService;
 export declare let $cacheFactory: angular.ICacheFactoryService;
