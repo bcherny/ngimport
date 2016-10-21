@@ -6,7 +6,7 @@
   "main:esnext": "./ngimport.es2015.js",
   "typings": "./ngimport.d.ts",
   "scripts": {
-    "build": "tsc -d -m es2015 -t es2015 --outDir . && mv ./ngimport.js ./ngimport.es2015.js && tsc -m commonjs -t es5 --outDir .;",
+    "build": "tsc -d -m es2015 -t es6 --outDir . && mv ./ngimport.js ./ngimport.es2015.js && tsc -m commonjs -t es5 --outDir .;",
     "watch": "tsc -w",
     "test": "karma start --single-run",
     "tdd": "karma start"
