@@ -19,6 +19,7 @@ export declare let $locale: angular.ILocaleService;
 export declare let $location: angular.ILocationService;
 export declare let $log: angular.ILogService;
 export declare let $parse: angular.IParseService;
+export declare let $provide: angular.auto.IProvideService;
 export declare let $q: angular.IQService;
 export declare let $rootElement: angular.IRootElementService;
 export declare let $rootScope: angular.IRootScopeService;
