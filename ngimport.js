@@ -1,5 +1,5 @@
 "use strict";
-const angular = require('angular');
+var angular = require('angular');
 exports.$anchorScroll = undefined;
 exports.$cacheFactory = undefined;
 exports.$compile = undefined;
@@ -18,6 +18,7 @@ exports.$locale = undefined;
 exports.$location = undefined;
 exports.$log = undefined;
 exports.$parse = undefined;
+exports.$provide = undefined;
 exports.$q = undefined;
 exports.$rootElement = undefined;
 exports.$rootScope = undefined;
@@ -34,7 +35,7 @@ exports.$xhrFactory = undefined;
 // TODO: move this out into a separate module
 // TODO: tests
 function bootstrap(moduleName) {
-    const div = document.createElement('div');
+    var div = document.createElement('div');
     document.body.appendChild(div);
     angular.bootstrap(div, [moduleName]);
     document.body.removeChild(div);
@@ -42,13 +43,16 @@ function bootstrap(moduleName) {
 exports.bootstrap = bootstrap;
 // prevent double-loading, which has the potential
 // to prevent sharing state between services
-let m = null;
+var m = null;
 try {
     m = angular.module('bcherny/ngimport');
 }
 catch (e) {
     m = angular.module('bcherny/ngimport', []);
 }
+m.config(['$provide', function ($p) {
+        exports.$provide = $p;
+    }]);
 // TODO: add mgMock/ngMockE2E services
 m.run(['$injector', function ($i) {
         exports.$anchorScroll = $i.get('$anchorScroll');

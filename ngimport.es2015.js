@@ -17,6 +17,7 @@ export let $locale = undefined;
 export let $location = undefined;
 export let $log = undefined;
 export let $parse = undefined;
+export let $provide = undefined;
 export let $q = undefined;
 export let $rootElement = undefined;
 export let $rootScope = undefined;
@@ -47,8 +48,11 @@ try {
 catch (e) {
     m = angular.module('bcherny/ngimport', []);
 }
+m.config(['$provide', ($p) => {
+        $provide = $p;
+    }]);
 // TODO: add mgMock/ngMockE2E services
-m.run(['$injector', function ($i) {
+m.run(['$injector', ($i) => {
         $anchorScroll = $i.get('$anchorScroll');
         $cacheFactory = $i.get('$cacheFactory');
         $compile = $i.get('$compile');

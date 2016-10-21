@@ -18,6 +18,7 @@ export let $locale: angular.ILocaleService = undefined
 export let $location: angular.ILocationService = undefined
 export let $log: angular.ILogService = undefined
 export let $parse: angular.IParseService = undefined
+export let $provide: angular.auto.IProvideService = undefined
 export let $q: angular.IQService = undefined
 export let $rootElement: angular.IRootElementService = undefined
 export let $rootScope: angular.IRootScopeService = undefined
@@ -50,8 +51,12 @@ try {
   m = angular.module('bcherny/ngimport', [])
 }
 
+m.config(['$provide', ($p: angular.auto.IProvideService) => {
+  $provide = $p
+}])
+
 // TODO: add mgMock/ngMockE2E services
-m.run(['$injector', function($i: angular.auto.IInjectorService) {
+m.run(['$injector', ($i: angular.auto.IInjectorService) => {
   $anchorScroll = <angular.IAnchorScrollService>$i.get('$anchorScroll')
   $cacheFactory = <angular.ICacheFactoryService>$i.get('$cacheFactory')
   $compile = <angular.ICompileService>$i.get('$compile')
