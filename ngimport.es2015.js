@@ -1,58 +1,58 @@
 import * as angular from 'angular';
-export let $anchorScroll = undefined;
-export let $cacheFactory = undefined;
-export let $compile = undefined;
-export let $controller = undefined;
-export let $document = undefined;
-export let $exceptionHandler = undefined;
-export let $filter = undefined;
-export let $http = undefined;
-export let $httpBackend = undefined;
-export let $httpParamSerializer = undefined;
-export let $httpParamSerializerJQLike = undefined;
-export let $injector = undefined;
-export let $interpolate = undefined;
-export let $interval = undefined;
-export let $locale = undefined;
-export let $location = undefined;
-export let $log = undefined;
-export let $parse = undefined;
-export let $provide = undefined;
-export let $q = undefined;
-export let $rootElement = undefined;
-export let $rootScope = undefined;
-export let $sce = undefined;
-export let $sceDelegate = undefined;
-export let $templateCache = undefined;
-export let $templateRequest = undefined;
-export let $timeout = undefined;
-export let $window = undefined;
-export let $xhrFactory = undefined;
+export var $anchorScroll = undefined;
+export var $cacheFactory = undefined;
+export var $compile = undefined;
+export var $controller = undefined;
+export var $document = undefined;
+export var $exceptionHandler = undefined;
+export var $filter = undefined;
+export var $http = undefined;
+export var $httpBackend = undefined;
+export var $httpParamSerializer = undefined;
+export var $httpParamSerializerJQLike = undefined;
+export var $injector = undefined;
+export var $interpolate = undefined;
+export var $interval = undefined;
+export var $locale = undefined;
+export var $location = undefined;
+export var $log = undefined;
+export var $parse = undefined;
+export var $provide = undefined;
+export var $q = undefined;
+export var $rootElement = undefined;
+export var $rootScope = undefined;
+export var $sce = undefined;
+export var $sceDelegate = undefined;
+export var $templateCache = undefined;
+export var $templateRequest = undefined;
+export var $timeout = undefined;
+export var $window = undefined;
+export var $xhrFactory = undefined;
 // bootstrap a dummy application using our module, so the #run block
 // below is synchronously called, and all of the injectables in it are
 // guaranteed to be defined after this code is run.
 // TODO: move this out into a separate module
 // TODO: tests
 export function bootstrap(moduleName) {
-    const div = document.createElement('div');
+    var div = document.createElement('div');
     document.body.appendChild(div);
     angular.bootstrap(div, [moduleName]);
     document.body.removeChild(div);
 }
 // prevent double-loading, which has the potential
 // to prevent sharing state between services
-let m = null;
+var m = null;
 try {
     m = angular.module('bcherny/ngimport');
 }
 catch (e) {
     m = angular.module('bcherny/ngimport', []);
 }
-m.config(['$provide', ($p) => {
+m.config(['$provide', function ($p) {
         $provide = $p;
     }]);
 // TODO: add mgMock/ngMockE2E services
-m.run(['$injector', ($i) => {
+m.run(['$injector', function ($i) {
         $anchorScroll = $i.get('$anchorScroll');
         $cacheFactory = $i.get('$cacheFactory');
         $compile = $i.get('$compile');
