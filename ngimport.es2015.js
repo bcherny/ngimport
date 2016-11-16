@@ -1,4 +1,9 @@
 import * as angular from 'angular';
+// providers
+// TODO: add more
+export var $httpProvider = undefined;
+export var $logProvider = undefined;
+// services
 export var $anchorScroll = undefined;
 export var $cacheFactory = undefined;
 export var $compile = undefined;
@@ -33,7 +38,7 @@ export var $xhrFactory = undefined;
 // guaranteed to be defined after this code is run.
 // TODO: move this out into a separate module
 // TODO: tests
-export function bootstrap(moduleName) {
+function bootstrap(moduleName) {
     var div = document.createElement('div');
     document.body.appendChild(div);
     angular.bootstrap(div, [moduleName]);
@@ -48,8 +53,10 @@ try {
 catch (e) {
     m = angular.module('bcherny/ngimport', []);
 }
-m.config(['$provide', function ($p) {
-        $provide = $p;
+m.config(['$provide', '$httpProvider', '$logProvider', function ($a, $b, $c) {
+        $provide = $a;
+        $httpProvider = $b;
+        $logProvider = $c;
     }]);
 // TODO: add mgMock/ngMockE2E services
 m.run(['$injector', function ($i) {

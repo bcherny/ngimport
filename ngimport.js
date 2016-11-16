@@ -1,5 +1,10 @@
 "use strict";
 var angular = require('angular');
+// providers
+// TODO: add more
+exports.$httpProvider = undefined;
+exports.$logProvider = undefined;
+// services
 exports.$anchorScroll = undefined;
 exports.$cacheFactory = undefined;
 exports.$compile = undefined;
@@ -40,7 +45,6 @@ function bootstrap(moduleName) {
     angular.bootstrap(div, [moduleName]);
     document.body.removeChild(div);
 }
-exports.bootstrap = bootstrap;
 // prevent double-loading, which has the potential
 // to prevent sharing state between services
 var m = null;
@@ -50,8 +54,10 @@ try {
 catch (e) {
     m = angular.module('bcherny/ngimport', []);
 }
-m.config(['$provide', function ($p) {
-        exports.$provide = $p;
+m.config(['$provide', '$httpProvider', '$logProvider', function ($a, $b, $c) {
+        exports.$provide = $a;
+        exports.$httpProvider = $b;
+        exports.$logProvider = $c;
     }]);
 // TODO: add mgMock/ngMockE2E services
 m.run(['$injector', function ($i) {

@@ -1,6 +1,8 @@
 /// <reference types="angular" />
 /// <reference types="angular-mocks" />
 import * as angular from 'angular';
+export declare let $httpProvider: angular.IHttpProvider;
+export declare let $logProvider: angular.ILogProvider;
 export declare let $anchorScroll: angular.IAnchorScrollService;
 export declare let $cacheFactory: angular.ICacheFactoryService;
 export declare let $compile: angular.ICompileService;
@@ -30,4 +32,3 @@ export declare let $templateRequest: angular.ITemplateRequestService;
 export declare let $timeout: angular.ITimeoutService;
 export declare let $window: angular.IWindowService;
 export declare let $xhrFactory: any;
-export declare function bootstrap(moduleName: string): void;

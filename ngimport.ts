@@ -1,5 +1,11 @@
 import * as angular from 'angular'
 
+// providers
+// TODO: add more
+export let $httpProvider: angular.IHttpProvider = undefined
+export let $logProvider: angular.ILogProvider = undefined
+
+// services
 export let $anchorScroll: angular.IAnchorScrollService = undefined
 export let $cacheFactory: angular.ICacheFactoryService = undefined
 export let $compile: angular.ICompileService = undefined
@@ -35,7 +41,7 @@ export let $xhrFactory: any = undefined
 // guaranteed to be defined after this code is run.
 // TODO: move this out into a separate module
 // TODO: tests
-export function bootstrap(moduleName: string): void {
+function bootstrap(moduleName: string): void {
   const div = document.createElement('div')
   document.body.appendChild(div)
   angular.bootstrap(div, [moduleName])
@@ -51,8 +57,14 @@ try {
   m = angular.module('bcherny/ngimport', [])
 }
 
-m.config(['$provide', ($p: angular.auto.IProvideService) => {
-  $provide = $p
+m.config(['$provide', '$httpProvider', '$logProvider', (
+  $a: angular.auto.IProvideService,
+  $b: angular.IHttpProvider,
+  $c: angular.ILogProvider
+) => {
+  $provide = $a
+  $httpProvider = $b
+  $logProvider = $c
 }])
 
 // TODO: add mgMock/ngMockE2E services
