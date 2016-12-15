@@ -1,6 +1,6 @@
 {
   "name": "ngimport",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Finally, imports for Angular 1 builtins!",
   "main": "./ngimport.js",
   "main:esnext": "./ngimport.es2015.js",

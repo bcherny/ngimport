@@ -48,54 +48,65 @@ function bootstrap(moduleName: string): void {
   document.body.removeChild(div)
 }
 
+let isInstantiated = false
+
 // prevent double-loading, which has the potential
 // to prevent sharing state between services
-let m: angular.IModule = null
 try {
-  m = angular.module('bcherny/ngimport')
+  angular.module('bcherny/ngimport')
 } catch (e) {
-  m = angular.module('bcherny/ngimport', [])
+
+  angular.module('bcherny/ngimport', [])
+
+  .config(['$provide', '$httpProvider', '$logProvider', (
+    $a: angular.auto.IProvideService,
+    $b: angular.IHttpProvider,
+    $c: angular.ILogProvider
+  ) => {
+
+    if (isInstantiated) return
+
+    $provide = $a
+    $httpProvider = $b
+    $logProvider = $c
+  }])
+
+  // TODO: add mgMock/ngMockE2E services
+  .run(['$injector', ($i: angular.auto.IInjectorService) => {
+
+    if (isInstantiated) return
+
+    $anchorScroll = <angular.IAnchorScrollService>$i.get('$anchorScroll')
+    $cacheFactory = <angular.ICacheFactoryService>$i.get('$cacheFactory')
+    $compile = <angular.ICompileService>$i.get('$compile')
+    $controller = <angular.IControllerService>$i.get('$controller')
+    $document = <angular.IDocumentService>$i.get('$document')
+    $exceptionHandler = <angular.IExceptionHandlerService>$i.get('$exceptionHandler')
+    $filter = <angular.IFilterService>$i.get('$filter')
+    $http = <angular.IHttpService>$i.get('$http')
+    $httpBackend = <angular.IHttpBackendService>$i.get('$httpBackend')
+    $httpParamSerializer = <angular.IHttpParamSerializer>$i.get('$httpParamSerializer')
+    $httpParamSerializerJQLike = <any>$i.get('$httpParamSerializerJQLike')
+    $injector = $i
+    $interpolate = <angular.IInterpolateService>$i.get('$interpolate')
+    $interval = <angular.IIntervalService>$i.get('$interval')
+    $locale = <angular.ILocaleService>$i.get('$locale')
+    $location = <angular.ILocationService>$i.get('$location')
+    $log = <angular.ILogService>$i.get('$log')
+    $parse = <angular.IParseService>$i.get('$parse')
+    $q = <angular.IQService>$i.get('$q')
+    $rootElement = <angular.IRootElementService>$i.get('$rootElement')
+    $rootScope = <angular.IRootScopeService>$i.get('$rootScope')
+    $sce = <angular.ISCEService>$i.get('$sce')
+    $sceDelegate = <angular.ISCEDelegateService>$i.get('$sceDelegate')
+    $templateCache = <angular.ITemplateCacheService>$i.get('$templateCache')
+    $templateRequest = <angular.ITemplateRequestService>$i.get('$templateRequest')
+    $timeout = <angular.ITimeoutService>$i.get('$timeout')
+    $window = <angular.IWindowService>$i.get('$window')
+    $xhrFactory = <any>$i.get('$xhrFactory')
+
+    isInstantiated = true
+  }])
+  bootstrap('bcherny/ngimport')
+
 }
-
-m.config(['$provide', '$httpProvider', '$logProvider', (
-  $a: angular.auto.IProvideService,
-  $b: angular.IHttpProvider,
-  $c: angular.ILogProvider
-) => {
-  $provide = $a
-  $httpProvider = $b
-  $logProvider = $c
-}])
-
-// TODO: add mgMock/ngMockE2E services
-m.run(['$injector', ($i: angular.auto.IInjectorService) => {
-  $anchorScroll = <angular.IAnchorScrollService>$i.get('$anchorScroll')
-  $cacheFactory = <angular.ICacheFactoryService>$i.get('$cacheFactory')
-  $compile = <angular.ICompileService>$i.get('$compile')
-  $controller = <angular.IControllerService>$i.get('$controller')
-  $document = <angular.IDocumentService>$i.get('$document')
-  $exceptionHandler = <angular.IExceptionHandlerService>$i.get('$exceptionHandler')
-  $filter = <angular.IFilterService>$i.get('$filter')
-  $http = <angular.IHttpService>$i.get('$http')
-  $httpBackend = <angular.IHttpBackendService>$i.get('$httpBackend')
-  $httpParamSerializer = <angular.IHttpParamSerializer>$i.get('$httpParamSerializer')
-  $httpParamSerializerJQLike = <any>$i.get('$httpParamSerializerJQLike')
-  $injector = $i
-  $interpolate = <angular.IInterpolateService>$i.get('$interpolate')
-  $interval = <angular.IIntervalService>$i.get('$interval')
-  $locale = <angular.ILocaleService>$i.get('$locale')
-  $location = <angular.ILocationService>$i.get('$location')
-  $log = <angular.ILogService>$i.get('$log')
-  $parse = <angular.IParseService>$i.get('$parse')
-  $q = <angular.IQService>$i.get('$q')
-  $rootElement = <angular.IRootElementService>$i.get('$rootElement')
-  $rootScope = <angular.IRootScopeService>$i.get('$rootScope')
-  $sce = <angular.ISCEService>$i.get('$sce')
-  $sceDelegate = <angular.ISCEDelegateService>$i.get('$sceDelegate')
-  $templateCache = <angular.ITemplateCacheService>$i.get('$templateCache')
-  $templateRequest = <angular.ITemplateRequestService>$i.get('$templateRequest')
-  $timeout = <angular.ITimeoutService>$i.get('$timeout')
-  $window = <angular.IWindowService>$i.get('$window')
-  $xhrFactory = <any>$i.get('$xhrFactory')
-}])
-bootstrap('bcherny/ngimport')
