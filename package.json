@@ -1,7 +1,7 @@
 {
   "name": "ngimport",
-  "version": "0.5.0",
-  "description": "Finally, imports for Angular 1 builtins!",
+  "version": "0.5.1",
+  "description": "ES6 imports for $http, $log, and other Angular 1 services",
   "main": "./ngimport.js",
   "main:esnext": "./ngimport.es2015.js",
   "typings": "./ngimport.d.ts",

@@ -4,9 +4,7 @@
 [npm]: https://img.shields.io/npm/v/ngimport.svg?style=flat-square
 [mit]: https://img.shields.io/npm/l/ngimport.svg?style=flat-square
 
-> A saner alternative to Angular 1 dependency injection
-
-**alpha**
+> ES6 imports for $http, $log, and other Angular 1 services
 
 ## Example
 
@@ -16,7 +14,7 @@
 import {IHttpService, ILogService, IPromise} from 'angular'
 
 angular.factory('Get', function($http: IHttpService, $log: ILogService) {
-  return function (url: string): IPromise<string> {
+  return function(url: string): IPromise<string> {
     return $http.get(url).then(data => {
       $log.info('Got data!', data)
       return data
@@ -35,7 +33,7 @@ export interface Get {
 import {IPromise} from 'angular'
 import {$http, $log} from 'ngimport'
 
-export function Get (url: string): IPromise<string> {
+export function Get(url: string): IPromise<string> {
   return $http.get(url).then(data => {
     $log.info('Got data!', data)
     return data
@@ -56,7 +54,7 @@ angular.factory('Get', function(
   $http: IHttpService,
   $log: ILogService
 ) {
-  return function (url: string): IPromise<string> {
+  return function(url: string): IPromise<string> {
     return $http.get(url).then(data => {
       $log.info('Got data!', data)
       return data
@@ -74,7 +72,7 @@ import {Get} from './Get'
 
 angular.component('MyComponent', {
   controller: class MyComponentController {
-    constructor (private Get: Get) {},
+    constructor(private Get: Get) {},
     get() {
       this.Get('/foo').then(data => ...)
     }
@@ -90,7 +88,7 @@ angular.component('MyComponent', {
 import {IPromise} from 'angular'
 import {$http, $log} from 'ngimport'
 
-export function Get (url: string): IPromise<string> {
+export function Get(url: string): IPromise<string> {
   return $http.get(url).then(data => {
     $log.info('Got data!', data)
     return data
