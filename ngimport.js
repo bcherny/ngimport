@@ -1,5 +1,5 @@
 "use strict";
-var angular = require('angular');
+var angular = require("angular");
 // providers
 // TODO: add more
 exports.$httpProvider = undefined;

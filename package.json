@@ -6,7 +6,8 @@
   "main:esnext": "./ngimport.es2015.js",
   "typings": "./ngimport.d.ts",
   "scripts": {
-    "build": "tsc -d -m es2015 -t es5 --outDir . && mv ./ngimport.js ./ngimport.es2015.js && tsc -m commonjs -t es5 --outDir .;",
+    "build": "npm run lint && tsc -d -m es2015 -t es5 --outDir . && mv ./ngimport.js ./ngimport.es2015.js && tsc -m commonjs -t es5 --outDir .;",
+    "lint": "tslint ngimport.ts",
     "watch": "tsc -w",
     "test": "karma start --single-run",
     "tdd": "karma start"
@@ -44,6 +45,7 @@
     "karma-mocha-reporter": "^2.2.2",
     "karma-source-map-support": "^1.2.0",
     "rollupify": "^0.3.9",
+    "tslint": "^4.4.2",
     "typescript": "^2.1.6",
     "watchify": "^3.9.0"
   },

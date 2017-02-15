@@ -6,6 +6,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "preserveConstEnums": true,
+    "strictNullChecks": false,
     "outDir": ".",
     "sourceMap": false,
     "target": "es5"
