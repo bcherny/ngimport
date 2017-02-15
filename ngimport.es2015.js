@@ -44,53 +44,49 @@ function bootstrap(moduleName) {
     angular.bootstrap(div, [moduleName]);
     document.body.removeChild(div);
 }
-var isInstantiated = false;
 // prevent double-loading, which has the potential
 // to prevent sharing state between services
+var m = null;
 try {
-    angular.module('bcherny/ngimport');
+    m = angular.module('bcherny/ngimport');
 }
 catch (e) {
-    angular.module('bcherny/ngimport', [])
-        .config(['$provide', '$httpProvider', '$logProvider', function ($a, $b, $c) {
-            if (isInstantiated)
-                return;
-            $provide = $a;
-            $httpProvider = $b;
-            $logProvider = $c;
-        }])
-        .run(['$injector', function ($i) {
-            if (isInstantiated)
-                return;
-            $anchorScroll = $i.get('$anchorScroll');
-            $cacheFactory = $i.get('$cacheFactory');
-            $compile = $i.get('$compile');
-            $controller = $i.get('$controller');
-            $document = $i.get('$document');
-            $exceptionHandler = $i.get('$exceptionHandler');
-            $filter = $i.get('$filter');
-            $http = $i.get('$http');
-            $httpBackend = $i.get('$httpBackend');
-            $httpParamSerializer = $i.get('$httpParamSerializer');
-            $httpParamSerializerJQLike = $i.get('$httpParamSerializerJQLike');
-            $injector = $i;
-            $interpolate = $i.get('$interpolate');
-            $interval = $i.get('$interval');
-            $locale = $i.get('$locale');
-            $location = $i.get('$location');
-            $log = $i.get('$log');
-            $parse = $i.get('$parse');
-            $q = $i.get('$q');
-            $rootElement = $i.get('$rootElement');
-            $rootScope = $i.get('$rootScope');
-            $sce = $i.get('$sce');
-            $sceDelegate = $i.get('$sceDelegate');
-            $templateCache = $i.get('$templateCache');
-            $templateRequest = $i.get('$templateRequest');
-            $timeout = $i.get('$timeout');
-            $window = $i.get('$window');
-            $xhrFactory = $i.get('$xhrFactory');
-            isInstantiated = true;
-        }]);
-    bootstrap('bcherny/ngimport');
+    m = angular.module('bcherny/ngimport', []);
 }
+m.config(['$provide', '$httpProvider', '$logProvider', function ($a, $b, $c) {
+        $provide = $a;
+        $httpProvider = $b;
+        $logProvider = $c;
+    }]);
+// TODO: add mgMock/ngMockE2E services
+m.run(['$injector', function ($i) {
+        $anchorScroll = $i.get('$anchorScroll');
+        $cacheFactory = $i.get('$cacheFactory');
+        $compile = $i.get('$compile');
+        $controller = $i.get('$controller');
+        $document = $i.get('$document');
+        $exceptionHandler = $i.get('$exceptionHandler');
+        $filter = $i.get('$filter');
+        $http = $i.get('$http');
+        $httpBackend = $i.get('$httpBackend');
+        $httpParamSerializer = $i.get('$httpParamSerializer');
+        $httpParamSerializerJQLike = $i.get('$httpParamSerializerJQLike');
+        $injector = $i;
+        $interpolate = $i.get('$interpolate');
+        $interval = $i.get('$interval');
+        $locale = $i.get('$locale');
+        $location = $i.get('$location');
+        $log = $i.get('$log');
+        $parse = $i.get('$parse');
+        $q = $i.get('$q');
+        $rootElement = $i.get('$rootElement');
+        $rootScope = $i.get('$rootScope');
+        $sce = $i.get('$sce');
+        $sceDelegate = $i.get('$sceDelegate');
+        $templateCache = $i.get('$templateCache');
+        $templateRequest = $i.get('$templateRequest');
+        $timeout = $i.get('$timeout');
+        $window = $i.get('$window');
+        $xhrFactory = $i.get('$xhrFactory');
+    }]);
+bootstrap('bcherny/ngimport');
