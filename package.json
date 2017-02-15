@@ -1,6 +1,6 @@
 {
   "name": "ngimport",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "ES6 imports for $http, $log, and other Angular 1 services",
   "main": "./ngimport.js",
   "main:esnext": "./ngimport.es2015.js",
@@ -21,7 +21,9 @@
     "require",
     "dependency",
     "inject",
-    "di"
+    "di",
+    "typescript",
+    "es6"
   ],
   "author": "Boris Cherny <boris@performancejs.com>",
   "license": "MIT",
@@ -30,23 +32,23 @@
   },
   "homepage": "https://github.com/bcherny/ngimport#readme",
   "devDependencies": {
-    "@types/angular-mocks": "^1.5.5",
-    "@types/jasmine": "^2.5.35",
-    "angular-mocks": "^1.5.8",
-    "browserify": "^13.1.0",
-    "jasmine": "^2.5.2",
-    "karma": "^1.3.0",
-    "karma-browserify": "^5.1.0",
+    "@types/angular-mocks": "^1.5.9",
+    "@types/jasmine": "^2.5.43",
+    "angular-mocks": "^1.6.2",
+    "browserify": "^14.1.0",
+    "jasmine": "^2.5.3",
+    "karma": "^1.4.1",
+    "karma-browserify": "^5.1.1",
     "karma-chrome-launcher": "^2.0.0",
-    "karma-jasmine": "^1.0.2",
-    "karma-mocha-reporter": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-mocha-reporter": "^2.2.2",
     "karma-source-map-support": "^1.2.0",
-    "rollupify": "^0.3.4",
-    "typescript": "^2.0.3",
-    "watchify": "^3.7.0"
+    "rollupify": "^0.3.9",
+    "typescript": "^2.1.6",
+    "watchify": "^3.9.0"
   },
   "dependencies": {
-    "@types/angular": "^1.5.16",
-    "angular": "^1.5.8"
+    "@types/angular": "^1.6.5",
+    "angular": "^1.6.2"
   }
 }
