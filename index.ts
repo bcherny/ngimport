@@ -36,18 +36,6 @@ export let $timeout: angular.ITimeoutService = undefined
 export let $window: angular.IWindowService = undefined
 export let $xhrFactory: any = undefined
 
-// bootstrap a dummy application using our module, so the #run block
-// below is synchronously called, and all of the injectables in it are
-// guaranteed to be defined after this code is run.
-// TODO: move this out into a separate module
-// TODO: tests
-function bootstrap(moduleName: string): void {
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-  angular.bootstrap(div, [moduleName])
-  document.body.removeChild(div)
-}
-
 // prevent double-loading, which has the potential
 // to prevent sharing state between services
 let m: angular.IModule = null
@@ -67,7 +55,6 @@ m.config(['$provide', '$httpProvider', '$logProvider', (
   $logProvider = $c
 }])
 
-// TODO: add mgMock/ngMockE2E services
 m.run(['$injector', ($i: angular.auto.IInjectorService) => {
   $anchorScroll = $i.get('$anchorScroll') as angular.IAnchorScrollService
   $cacheFactory = $i.get('$cacheFactory') as angular.ICacheFactoryService
@@ -98,4 +85,3 @@ m.run(['$injector', ($i: angular.auto.IInjectorService) => {
   $window = $i.get('$window') as angular.IWindowService
   $xhrFactory = $i.get('$xhrFactory') as angular.IXhrFactory<any>
 }])
-bootstrap('bcherny/ngimport')

@@ -8,10 +8,12 @@
     "preserveConstEnums": true,
     "strictNullChecks": false,
     "outDir": ".",
-    "sourceMap": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
     "target": "es5"
   },
   "files": [
-    "./ngimport.ts"
+    "./index.ts",
+    "./test.ts"
   ]
 }

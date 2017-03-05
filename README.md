@@ -8,6 +8,8 @@
 
 ## Example
 
+*Note: This example is in TypeScript, but it works equally well in plain JavaScript.*
+
 ### Before:
 
 ```ts
@@ -165,6 +167,7 @@ Voila! Now instead of DIing `fooService`, we can now simply write `import {fooSe
 
 ### Limitations
 
+- Angular builtins (`$http`, `$rootScope`) will be undefined until you bootstrap your app. This is due to the way Angular creates injectors. Be careful to either not use these builtins at the top level, or bootstrap the app before you do.
 - If transpiling to CommonJS, be careful to destructure the import rather than importing a default value. Otherwise when the exported reference updates, your consumer will still have a pointer to the old, undefined reference.
 
 ## License

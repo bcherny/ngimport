@@ -1,15 +1,18 @@
 {
   "name": "ngimport",
-  "version": "0.5.2",
-  "description": "ES6 imports for $http, $log, and other Angular 1 services",
-  "main": "./ngimport.js",
-  "main:esnext": "./ngimport.es2015.js",
-  "typings": "./ngimport.d.ts",
+  "version": "0.6.0",
+  "description": "Easy to use ES6 imports for $http, $log, and other Angular 1 services",
+  "main": "./index.js",
+  "main:esnext": "./index.es2015.js",
+  "typings": "./index.d.ts",
   "scripts": {
-    "build": "npm run lint && tsc -d -m es2015 -t es5 --outDir . && mv ./ngimport.js ./ngimport.es2015.js && tsc -m commonjs -t es5 --outDir .;",
-    "lint": "tslint ngimport.ts",
+    "build:es2015": "tsc -d -m es2015 -t es6 && mv ./index.js ./index.es2015.js",
+    "build:es5": "tsc -m commonjs -m commonjs -t es5",
+    "build": "npm run clean; npm run lint && npm run build:es2015 && npm run build:es5",
+    "clean": "rm *.d.ts; rm *.map; rm index.js; rm index.es2015.js rm test.js; exit 0",
+    "lint": "tslint index.ts",
     "watch": "tsc -w",
-    "test": "karma start --single-run",
+    "test": "npm run build; karma start --single-run",
     "tdd": "karma start"
   },
   "repository": {
@@ -18,13 +21,20 @@
   },
   "keywords": [
     "import",
-    "angular",
     "require",
+    "angular",
     "dependency",
     "inject",
+    "dependency injection",
     "di",
+    "typed",
+    "typesafe",
+    "type safe",
     "typescript",
-    "es6"
+    "es6",
+    "es2015",
+    "interoperable",
+    "interoperate"
   ],
   "author": "Boris Cherny <boris@performancejs.com>",
   "license": "MIT",
@@ -44,13 +54,12 @@
     "karma-jasmine": "^1.1.0",
     "karma-mocha-reporter": "^2.2.2",
     "karma-source-map-support": "^1.2.0",
-    "rollupify": "^0.3.9",
-    "tslint": "^4.4.2",
-    "typescript": "^2.1.6",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1",
     "watchify": "^3.9.0"
   },
   "dependencies": {
-    "@types/angular": "^1.6.5",
+    "@types/angular": "^1.6.7",
     "angular": "^1.6.2"
   }
 }

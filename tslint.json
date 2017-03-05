@@ -25,6 +25,7 @@
     "object-literal-shorthand": true,
     "one-line": [true, "check-catch", "check-finally", "check-else", "check-open-brace"],
     "one-variable-per-declaration": [true, "ignore-for-loop"],
+    "ordered-imports": [true],
     "quotemark": [true, "single", "avoid-escape"],
     "semicolon": [true, "never"],
     "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
