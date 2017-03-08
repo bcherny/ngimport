@@ -85,3 +85,83 @@ m.run(['$injector', ($i: angular.auto.IInjectorService) => {
   $window = $i.get('$window') as angular.IWindowService
   $xhrFactory = $i.get('$xhrFactory') as angular.IXhrFactory<any>
 }])
+
+function bootstrap(moduleName: string) {
+  angular.bootstrap(angular.element(), [moduleName]);
+  (angular as any).bootstrap = fauxBootstrap
+}
+
+bootstrap('bcherny/ngimport')
+
+function fauxBootstrap(
+  element: string | Element | JQuery | Document,
+  modules?: Array<string | Function | any[]>,
+  config?: angular.IAngularBootstrapConfig & { debugInfoEnabled?: boolean}
+): angular.auto.IInjectorService {
+
+  if (!angular.isObject(config)) config = {}
+  let defaultConfig = {
+    strictDi: false
+  }
+  config = angular.extend(defaultConfig, config)
+  let doBootstrap = function() {
+    element = angular.element(element)
+
+    if (element.injector()) {
+      let tag = (element[0] === window.document as any) ? 'document' : (angular as any).startingTag(element)
+      // Encode angle brackets to prevent input from being sanitized to empty string #8683.
+      throw (angular as any).ngMinErr(
+          'btstrpd',
+          'App already bootstrapped with this element \'{0}\'',
+          tag.replace(/</, '&lt;').replace(/>/, '&gt;'))
+    }
+
+    modules = modules || []
+    modules.unshift(['$provide', function($provide: angular.IModule) {
+      $provide.value('$rootElement', element)
+    }])
+
+    if (config.debugInfoEnabled) {
+      // Pushing so that this overrides `debugInfoEnabled` setting defined in user's `modules`.
+      modules.push(['$compileProvider', function($compileProvider: angular.ICompileProvider) {
+        $compileProvider.debugInfoEnabled(true)
+      }])
+    }
+
+    modules.unshift('ng')
+    let injector = exports.$injector
+    injector.invoke(['$rootScope', '$rootElement', '$compile', '$injector',
+      function bootstrapApply(scope: angular.IScope, element: angular.IAugmentedJQuery, compile: angular.ICompileService, injector: angular.auto.IInjectorService) {
+        scope.$apply(function() {
+          element.data('$injector', injector)
+          compile(element)(scope)
+        })
+      }]
+    )
+    return injector
+  }
+
+  let NG_ENABLE_DEBUG_INFO = /^NG_ENABLE_DEBUG_INFO!/
+  let NG_DEFER_BOOTSTRAP = /^NG_DEFER_BOOTSTRAP!/
+
+  if (window && NG_ENABLE_DEBUG_INFO.test(window.name)) {
+    config.debugInfoEnabled = true
+    window.name = window.name.replace(NG_ENABLE_DEBUG_INFO, '')
+  }
+
+  if (window && !NG_DEFER_BOOTSTRAP.test(window.name)) {
+    return doBootstrap()
+  }
+
+  window.name = window.name.replace(NG_DEFER_BOOTSTRAP, '');
+  (angular as any).resumeBootstrap = function(extraModules: string[]) {
+    angular.forEach(extraModules, function(module) {
+      modules.push(module)
+    })
+    return doBootstrap()
+  }
+
+  if (angular.isFunction((angular as any).resumeDeferredBootstrap)) {
+    (angular as any).resumeDeferredBootstrap()
+  }
+}

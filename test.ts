@@ -6,11 +6,12 @@ describe('ngimport', () => {
   afterEach(() => {
     $http.defaults.headers.common = {}
   })
-  it('should not define angular builtins before the app is bootstrapped', () => {
+  it('should define angular builtins before the app is bootstrapped', () => {
     const element = $()
     module('a', ['bcherny/ngimport'])
-    expect($http).toBeUndefined()
-    expect($rootScope).toBeUndefined()
+    expect($http).toBeDefined()
+    expect(typeof $http.get).toBe('function')
+    expect(typeof $rootScope.$id).toBe('number')
     bootstrap(element, ['a'])
     element.remove()
   })
