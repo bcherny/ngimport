@@ -18,7 +18,6 @@
     "no-internal-module": true,
     "no-reference": true,
     "no-trailing-whitespace": true,
-    "no-unused-new": true,
     "no-var-keyword": true,
     "no-var-requires": true,
     "object-literal-key-quotes": [true, "as-needed"],

@@ -54,8 +54,8 @@ describe('ngimport', () => {
     module('a', ['bcherny/ngimport'])
       .constant('$log', 42)
     const $injector = bootstrap(element, ['a'])
-    expect($injector.get('$log')).toBe(42)
-    expect($log).toBe(42)
+    expect($injector.get('$log') as any).toBe(42)
+    expect($log as any).toBe(42)
     element.remove()
   })
   it('should be able to assert against HTTP requests with $httpBackend', () => {
