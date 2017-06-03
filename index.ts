@@ -3,44 +3,44 @@ import 'angular-resource'
 
 // providers
 // TODO: add more
-export let $httpProvider: angular.IHttpProvider = undefined
-export let $logProvider: angular.ILogProvider = undefined
+export let $httpProvider: angular.IHttpProvider
+export let $logProvider: angular.ILogProvider
 
 // services
-export let $anchorScroll: angular.IAnchorScrollService = undefined
-export let $cacheFactory: angular.ICacheFactoryService = undefined
-export let $compile: angular.ICompileService = undefined
-export let $controller: angular.IControllerService = undefined
-export let $document: angular.IDocumentService = undefined
-export let $exceptionHandler: angular.IExceptionHandlerService = undefined
-export let $filter: angular.IFilterService = undefined
-export let $http: angular.IHttpService = undefined
-export let $httpBackend: angular.IHttpBackendService = undefined
-export let $httpParamSerializer: angular.IHttpParamSerializer = undefined
-export let $httpParamSerializerJQLike: any = undefined
-export let $injector: angular.auto.IInjectorService = undefined
-export let $interpolate: angular.IInterpolateService = undefined
-export let $interval: angular.IIntervalService = undefined
-export let $locale: angular.ILocaleService = undefined
-export let $location: angular.ILocationService = undefined
-export let $log: angular.ILogService = undefined
-export let $parse: angular.IParseService = undefined
-export let $provide: angular.auto.IProvideService = undefined
-export let $q: angular.IQService = undefined
-export let $resource: angular.resource.IResourceService = undefined
-export let $rootElement: angular.IRootElementService = undefined
-export let $rootScope: angular.IRootScopeService = undefined
-export let $sce: angular.ISCEService = undefined
-export let $sceDelegate: angular.ISCEDelegateService = undefined
-export let $templateCache: angular.ITemplateCacheService = undefined
-export let $templateRequest: angular.ITemplateRequestService = undefined
-export let $timeout: angular.ITimeoutService = undefined
-export let $window: angular.IWindowService = undefined
-export let $xhrFactory: any = undefined
+export let $anchorScroll: angular.IAnchorScrollService
+export let $cacheFactory: angular.ICacheFactoryService
+export let $compile: angular.ICompileService
+export let $controller: angular.IControllerService
+export let $document: angular.IDocumentService
+export let $exceptionHandler: angular.IExceptionHandlerService
+export let $filter: angular.IFilterService
+export let $http: angular.IHttpService
+export let $httpBackend: angular.IHttpBackendService
+export let $httpParamSerializer: angular.IHttpParamSerializer
+export let $httpParamSerializerJQLike: any
+export let $injector: angular.auto.IInjectorService
+export let $interpolate: angular.IInterpolateService
+export let $interval: angular.IIntervalService
+export let $locale: angular.ILocaleService
+export let $location: angular.ILocationService
+export let $log: angular.ILogService
+export let $parse: angular.IParseService
+export let $provide: angular.auto.IProvideService
+export let $q: angular.IQService
+export let $resource: angular.resource.IResourceService
+export let $rootElement: angular.IRootElementService
+export let $rootScope: angular.IRootScopeService
+export let $sce: angular.ISCEService
+export let $sceDelegate: angular.ISCEDelegateService
+export let $templateCache: angular.ITemplateCacheService
+export let $templateRequest: angular.ITemplateRequestService
+export let $timeout: angular.ITimeoutService
+export let $window: angular.IWindowService
+export let $xhrFactory: any
 
 // prevent double-loading, which has the potential
 // to prevent sharing state between services
-let m: angular.IModule = null
+let m: angular.IModule
 try {
   m = angular.module('bcherny/ngimport')
 } catch (e) {
@@ -58,33 +58,33 @@ m.config(['$provide', '$httpProvider', '$logProvider', (
 }])
 
 m.run(['$injector', ($i: angular.auto.IInjectorService) => {
-  $anchorScroll = $i.get('$anchorScroll') as angular.IAnchorScrollService
-  $cacheFactory = $i.get('$cacheFactory') as angular.ICacheFactoryService
-  $compile = $i.get('$compile') as angular.ICompileService
-  $controller = $i.get('$controller') as angular.IControllerService
-  $document = $i.get('$document') as angular.IDocumentService
-  $exceptionHandler = $i.get('$exceptionHandler') as angular.IExceptionHandlerService
-  $filter = $i.get('$filter') as angular.IFilterService
-  $http = $i.get('$http') as angular.IHttpService
-  $httpBackend = $i.get('$httpBackend') as angular.IHttpBackendService
-  $httpParamSerializer = $i.get('$httpParamSerializer') as angular.IHttpParamSerializer
+  $anchorScroll = $i.get('$anchorScroll')
+  $cacheFactory = $i.get('$cacheFactory')
+  $compile = $i.get('$compile')
+  $controller = $i.get('$controller')
+  $document = $i.get('$document')
+  $exceptionHandler = $i.get('$exceptionHandler')
+  $filter = $i.get('$filter')
+  $http = $i.get('$http')
+  $httpBackend = $i.get('$httpBackend')
+  $httpParamSerializer = $i.get('$httpParamSerializer')
   $httpParamSerializerJQLike = $i.get('$httpParamSerializerJQLike') as angular.IHttpParamSerializer
   $injector = $i
-  $interpolate = $i.get('$interpolate') as angular.IInterpolateService
-  $interval = $i.get('$interval') as angular.IIntervalService
-  $locale = $i.get('$locale') as angular.ILocaleService
-  $location = $i.get('$location') as angular.ILocationService
-  $log = $i.get('$log') as angular.ILogService
-  $parse = $i.get('$parse') as angular.IParseService
-  $q = $i.get('$q') as angular.IQService
-  $resource = $i.get('$resource') as angular.resource.IResourceService
-  $rootElement = $i.get('$rootElement') as angular.IRootElementService
-  $rootScope = $i.get('$rootScope') as angular.IRootScopeService
-  $sce = $i.get('$sce') as angular.ISCEService
-  $sceDelegate = $i.get('$sceDelegate') as angular.ISCEDelegateService
-  $templateCache = $i.get('$templateCache') as angular.ITemplateCacheService
-  $templateRequest = $i.get('$templateRequest') as angular.ITemplateRequestService
-  $timeout = $i.get('$timeout') as angular.ITimeoutService
-  $window = $i.get('$window') as angular.IWindowService
+  $interpolate = $i.get('$interpolate')
+  $interval = $i.get('$interval')
+  $locale = $i.get('$locale')
+  $location = $i.get('$location')
+  $log = $i.get('$log')
+  $parse = $i.get('$parse')
+  $q = $i.get('$q')
+  $resource = $i.get('$resource')
+  $rootElement = $i.get('$rootElement')
+  $rootScope = $i.get('$rootScope')
+  $sce = $i.get('$sce')
+  $sceDelegate = $i.get('$sceDelegate')
+  $templateCache = $i.get('$templateCache')
+  $templateRequest = $i.get('$templateRequest')
+  $timeout = $i.get('$timeout')
+  $window = $i.get('$window')
   $xhrFactory = $i.get('$xhrFactory') as angular.IXhrFactory<any>
 }])

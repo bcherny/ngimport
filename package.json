@@ -1,6 +1,6 @@
 {
   "name": "ngimport",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Easy to use ES6 imports for $http, $log, and other Angular 1 services",
   "main": "./index.js",
   "main:esnext": "./index.es2015.js",
@@ -45,9 +45,9 @@
   },
   "homepage": "https://github.com/bcherny/ngimport#readme",
   "devDependencies": {
-    "@types/jasmine": "^2.5.47",
+    "@types/jasmine": "^2.5.51",
     "angular-mocks": ">=1.5.0",
-    "browserify": "^14.3.0",
+    "browserify": "^14.4.0",
     "jasmine": "^2.6.0",
     "karma": "^1.7.0",
     "karma-browserify": "^5.1.1",
@@ -55,12 +55,12 @@
     "karma-jasmine": "^1.1.0",
     "karma-mocha-reporter": "^2.2.3",
     "karma-source-map-support": "^1.2.0",
-    "tslint": "^5.2.0",
-    "typescript": "^2.3.2",
+    "tslint": "^5.4.2",
+    "typescript": "^2.3.4",
     "watchify": "^3.9.0"
   },
   "dependencies": {
-    "@types/angular": "^1.6.17",
+    "@types/angular": "^1.6.18",
     "@types/angular-mocks": "^1.5.9",
     "@types/angular-resource": "^1.5.8",
     "angular": ">=1.5.0",
