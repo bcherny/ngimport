@@ -1,6 +1,6 @@
 {
   "name": "ngimport",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Easy to use ES6 imports for $http, $log, and other Angular 1 services",
   "main": "./index.js",
   "main:esnext": "./index.es2015.js",

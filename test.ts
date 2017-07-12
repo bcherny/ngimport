@@ -7,7 +7,7 @@ describe('ngimport', () => {
     $http.defaults.headers.common = {}
   })
   it('should not define angular builtins before the app is bootstrapped', () => {
-    const element = $()
+    const element = div()
     module('a', ['bcherny/ngimport'])
     expect($http).toBeUndefined()
     expect($rootScope).toBeUndefined()
@@ -15,7 +15,7 @@ describe('ngimport', () => {
     element.remove()
   })
   it('should define angular builtins after the app is bootstrapped', () => {
-    const element = $()
+    const element = div()
     module('a', ['bcherny/ngimport'])
     bootstrap(element, ['a'])
     expect($http).toBeDefined()
@@ -24,7 +24,7 @@ describe('ngimport', () => {
     element.remove()
   })
   it('should not override ngimported provider state', () => {
-    const element = $()
+    const element = div()
     module('a', ['bcherny/ngimport'])
     bootstrap(element, ['a'])
     $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
@@ -34,7 +34,7 @@ describe('ngimport', () => {
     element.remove()
   })
   it('should share ngimported service state between ngimported and injected instances', () => {
-    const element = $()
+    const element = div()
     module('a', ['bcherny/ngimport'])
     const $injector = bootstrap(element, ['a'])
     $http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
@@ -42,7 +42,7 @@ describe('ngimport', () => {
     element.remove()
   })
   it('should share ngimported service state between injected and ngimported instances', () => {
-    const element = $()
+    const element = div()
     module('a', ['bcherny/ngimport'])
     const $injector = bootstrap(element, ['a'])
     $injector.get('$http').defaults.headers.common.Authorization = 'Basic YmVlcDpib29w'
@@ -50,7 +50,7 @@ describe('ngimport', () => {
     element.remove()
   })
   it('should be able to mock dependencies with $provide', () => {
-    const element = $()
+    const element = div()
     module('a', ['bcherny/ngimport'])
       .constant('$log', 42)
     const $injector = bootstrap(element, ['a'])
@@ -59,7 +59,7 @@ describe('ngimport', () => {
     element.remove()
   })
   it('should be able to assert against HTTP requests with $httpBackend', () => {
-    const element = $()
+    const element = div()
     module('a', ['ngMock', 'bcherny/ngimport'])
     bootstrap(element, ['a'])
     $httpBackend.expectGET('/url').respond(null)
@@ -70,3 +70,7 @@ describe('ngimport', () => {
     element.remove()
   })
 })
+
+function div() {
+  return $(document.createElement('div'))
+}
