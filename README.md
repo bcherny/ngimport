@@ -48,11 +48,13 @@ export function Get(url: string): IPromise<string> {
 ### Before:
 
 ```ts
+angular.module('myModule', [])
+
 // Contents of Get.ts:
 
 import {IHttpService, ILogService, IPromise} from 'angular'
 
-angular.factory('Get', function(
+angular.module('myModule').factory('Get', function(
   $http: IHttpService,
   $log: ILogService
 ) {
@@ -72,7 +74,7 @@ export interface Get {
 
 import {Get} from './Get'
 
-angular.component('MyComponent', {
+angular.module('myModule').component('MyComponent', {
   controller: class MyComponentController {
     constructor(private Get: Get) {},
     get() {
@@ -85,6 +87,8 @@ angular.component('MyComponent', {
 ### After:
 
 ```ts
+angular.module('myModule', ['bcherny/ngimport'])
+
 // Contents of Get.ts:
 
 import {IPromise} from 'angular'
@@ -101,7 +105,7 @@ export function Get(url: string): IPromise<string> {
 
 import {Get} from './Get'
 
-angular.component('MyComponent', {
+angular.module('myModule').component('MyComponent', {
   controller: class MyComponentController {
     get() {
       Get('/foo').then(data => ...)
