@@ -45,8 +45,13 @@
   },
   "homepage": "https://github.com/bcherny/ngimport#readme",
   "devDependencies": {
+    "@types/angular": "^1.6.18",
+    "@types/angular-mocks": "^1.5.9",
+    "@types/angular-resource": "^1.5.8",
     "@types/jasmine": "^2.5.51",
+    "angular": ">=1.5.0",
     "angular-mocks": ">=1.5.0",
+    "angular-resource": ">=1.5.0",
     "browserify": "^14.4.0",
     "jasmine": "^2.6.0",
     "karma": "^1.7.0",
@@ -59,10 +64,7 @@
     "typescript": "^2.3.4",
     "watchify": "^3.9.0"
   },
-  "dependencies": {
-    "@types/angular": "^1.6.18",
-    "@types/angular-mocks": "^1.5.9",
-    "@types/angular-resource": "^1.5.8",
+  "peerDependencies": {
     "angular": ">=1.5.0",
     "angular-resource": ">=1.5.0"
   }
