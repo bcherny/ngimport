@@ -6,6 +6,16 @@
 
 > ES6 imports for $http, $log, and other Angular 1 services
 
+## Install
+
+```sh
+# Using Yarn:
+yarn add ngimport angular angular-resource
+
+# Or, using NPM:
+npm install ngimport angular angular-resource --save
+```
+
 ## Example
 
 *Note: This example is in TypeScript, but it works equally well in plain JavaScript.*
