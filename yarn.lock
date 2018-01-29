@@ -8,12 +8,6 @@
   dependencies:
     "@types/angular" "*"
 
-"@types/angular-resource@^1.5.14":
-  version "1.5.14"
-  resolved "https://registry.yarnpkg.com/@types/angular-resource/-/angular-resource-1.5.14.tgz#902f34e8c98f708ae99493c6d416b39b4a22d9fe"
-  dependencies:
-    "@types/angular" "*"
-
 "@types/angular@*", "@types/angular@^1.6.34":
   version "1.6.34"
   resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.6.34.tgz#05014ffcb0288b36056058b4c9dda9edf580bf4c"
@@ -58,10 +52,6 @@ ajv@^4.9.1:
 angular-mocks@^1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.6.tgz#c93018e7838c6dc5ceaf1a6bcf9be13c830ea515"
-
-angular-resource@^1.6.6:
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.6.6.tgz#430660e969c3e7cf40c5e247e5e690f06d6efc61"
 
 angular@^1.6.6:
   version "1.6.6"

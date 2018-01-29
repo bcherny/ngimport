@@ -1,6 +1,6 @@
 {
   "name": "ngimport",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "description": "Easy to use ES6 imports for $http, $log, and other Angular 1 services",
   "main": "./index.js",
   "main:esnext": "./index.es2015.js",
@@ -49,7 +49,6 @@
     "@types/jasmine": "^2.6.0",
     "angular": "^1.6.6",
     "angular-mocks": "^1.6.6",
-    "angular-resource": "^1.6.6",
     "browserify": "^14.5.0",
     "jasmine": "^2.8.0",
     "jasmine-core": "^2.8.0",
@@ -64,11 +63,9 @@
     "watchify": "^3.9.0"
   },
   "dependencies": {
-    "@types/angular": "^1.6.34",
-    "@types/angular-resource": "^1.5.14"
+    "@types/angular": "^1.6.34"
   },
   "peerDependencies": {
-    "angular": ">=1.5.0",
-    "angular-resource": ">=1.5.0"
+    "angular": ">=1.5.0"
   }
 }

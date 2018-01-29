@@ -1,5 +1,4 @@
 import * as angular from 'angular'
-import 'angular-resource'
 
 // providers
 // TODO: add more
@@ -27,7 +26,6 @@ export let $log: angular.ILogService
 export let $parse: angular.IParseService
 export let $provide: angular.auto.IProvideService
 export let $q: angular.IQService
-export let $resource: angular.resource.IResourceService
 export let $rootElement: angular.IRootElementService
 export let $rootScope: angular.IRootScopeService
 export let $sce: angular.ISCEService
@@ -44,7 +42,7 @@ let m: angular.IModule
 try {
   m = angular.module('bcherny/ngimport')
 } catch (e) {
-  m = angular.module('bcherny/ngimport', ['ngResource'])
+  m = angular.module('bcherny/ngimport', [])
 }
 
 m.config(['$provide', '$httpProvider', '$logProvider', (
@@ -77,7 +75,6 @@ m.run(['$injector', ($i: angular.auto.IInjectorService) => {
   $log = $i.get('$log')
   $parse = $i.get('$parse')
   $q = $i.get('$q')
-  $resource = $i.get('$resource')
   $rootElement = $i.get('$rootElement')
   $rootScope = $i.get('$rootScope')
   $sce = $i.get('$sce')

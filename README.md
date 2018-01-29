@@ -10,10 +10,10 @@
 
 ```sh
 # Using Yarn:
-yarn add ngimport angular angular-resource
+yarn add ngimport angular
 
 # Or, using NPM:
-npm install ngimport angular angular-resource --save
+npm install ngimport angular --save
 ```
 
 ## Example
