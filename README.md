@@ -16,6 +16,8 @@ yarn add ngimport angular
 npm install ngimport angular --save
 ```
 
+If you're using ngResource, also install [ngimport-ngresource](https://github.com/bcherny/ngimport-ngresource).
+
 ## Example
 
 *Note: This example is in TypeScript, but it works equally well in plain JavaScript.*
